@@ -7,8 +7,8 @@ type Gift = {
   id: number
   name: string
   description: string
-  price: string
-  image: string
+  total_price: string
+  image_url: string
 }
 
 export default function GiftItem({ gift, onShowModal }: { gift: Gift, onShowModal: (gift: Gift, quantity: number) => void }) {
@@ -22,7 +22,7 @@ export default function GiftItem({ gift, onShowModal }: { gift: Gift, onShowModa
     <div className={styles.card}>
       <div className={styles.imageWrapper}>
         <Image
-          src={gift.image}
+          src={gift.image_url}
           alt={gift.name}
           layout="fill"
           objectFit="cover"
@@ -30,7 +30,7 @@ export default function GiftItem({ gift, onShowModal }: { gift: Gift, onShowModa
       </div>
       <h2>{gift.name}</h2>
       <p>{gift.description}</p>
-      <span>{gift.price}</span>
+      <span>{gift.total_price}</span>
       <div className={styles.picker}>
         <button onClick={decrement}>-</button>
         <span>{quantity}</span>

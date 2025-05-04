@@ -11,7 +11,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 type ModalProps = {
   gift: {
     name: string
-    price: string
+    total_price: string
   }
   quantity: number
   closeModal: () => void
@@ -21,7 +21,7 @@ export default function Modal({ gift, quantity, closeModal }: ModalProps) {
   const [paymentConfirmed, setPaymentConfirmed] = useState(false)
   const [pixPayload, setPixPayload] = useState<string | null>(null)
 
-  const totalPrice = quantity * parseFloat(gift.price.replace('R$', '').replace(',', '.'))
+  const totalPrice = quantity * parseFloat(gift.total_price.replace('R$', '').replace(',', '.'))
 
   const generatePixCode = async () => {
     // @ts-ignore
