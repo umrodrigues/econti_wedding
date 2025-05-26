@@ -84,3 +84,52 @@
     }
   }
   
+
+  .input {
+  width: 100%;
+  padding: 0.6rem;
+  margin: 1rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: #cc2b5e;
+  }
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #444;
+  text-align: left;
+}
+
+.contributors {
+  margin-top: 2rem;
+  text-align: left;
+
+  h4 {
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background: #fff;
+      padding: 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 6px;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+      font-size: 0.95rem;
+      color: #555;
+    }
+  }
+}
