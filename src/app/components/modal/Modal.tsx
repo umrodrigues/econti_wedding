@@ -1,15 +1,14 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ReactQRCode from 'react-qr-code'
 import styles from './Modal.module.scss'
-
-// @ts-ignore
 import { QrCodePix } from 'qrcode-pix'
 import { AiOutlineClose } from 'react-icons/ai'
 
 type ModalProps = {
   gift: {
+    id: number
     name: string
     total_price: string
   }
@@ -17,39 +16,53 @@ type ModalProps = {
   closeModal: () => void
 }
 
+type Contribution = {
+  user_name: string
+  amount: number
+  created_at: string
+}
+
 function parseCurrencyToNumber(value: string): number {
-  // Remove tudo que não seja dígito, vírgula ou ponto
   const cleaned = value.replace(/[^\d,.-]/g, '').replace(',', '.')
   const parsed = parseFloat(cleaned)
   return isNaN(parsed) ? 0 : parsed
 }
 
-export default function Modal({ gift, quantity, closeModal }: ModalProps) {
+export default function Modal({ gift, closeModal }: ModalProps) {
   const [paymentConfirmed, setPaymentConfirmed] = useState(false)
   const [pixPayload, setPixPayload] = useState<string | null>(null)
   const [customAmount, setCustomAmount] = useState('')
+  const [contributorName, setContributorName] = useState('')
   const [error, setError] = useState('')
-
-  const contributors = [
-    { name: 'Maria', amount: 50 },
-    { name: 'João', amount: 100 },
-    { name: 'Ana', amount: 75 },
-  ]
+  const [contributions, setContributions] = useState<Contribution[]>([])
 
   const maxPrice = parseCurrencyToNumber(gift.total_price)
+  const totalPrice = parseCurrencyToNumber(customAmount)
+
+  useEffect(() => {
+    const fetchContributions = async () => {
+      try {
+        const res = await fetch(`/api/contributions/${gift.id}`)
+        const data = await res.json()
+        if (res.ok) {
+          setContributions(data.contributions)
+        }
+      } catch (err) {
+        console.error('Erro ao carregar contribuições:', err)
+      }
+    }
+
+    fetchContributions()
+  }, [gift.id])
 
   const handleAmountChange = (value: string) => {
     setCustomAmount(value)
-
     const validFormat = /^[0-9]*[.,]?[0-9]{0,2}$/.test(value)
-
     if (!validFormat) {
       setError('Formato inválido. Use números e até 2 casas decimais.')
       return
     }
-
     const numericValue = parseCurrencyToNumber(value)
-
     if (numericValue > maxPrice) {
       setError('O valor não pode ser maior que o valor total do presente.')
     } else {
@@ -57,17 +70,16 @@ export default function Modal({ gift, quantity, closeModal }: ModalProps) {
     }
   }
 
-  const totalPrice = parseCurrencyToNumber(customAmount)
-
   const generatePixCode = async () => {
-    // @ts-ignore
+        // @ts-ignore
+
     const qrCodePix = new QrCodePix({
       version: '01',
       key: '04182410076',
       name: 'ECONTIEVENTOS',
       city: 'SAO PAULO',
       transactionId: 'ECONTI123',
-      message: `Presente: ${gift.name}`,
+      message: `Presente: ${gift.name}${contributorName ? ` - ${contributorName}` : ''}`,
       value: totalPrice,
     })
 
@@ -75,6 +87,11 @@ export default function Modal({ gift, quantity, closeModal }: ModalProps) {
   }
 
   const handlePayment = async () => {
+    if (!contributorName.trim()) {
+      setError('Por favor, informe seu nome.')
+      return
+    }
+
     if (totalPrice <= 0 || totalPrice > maxPrice) {
       setError('Informe um valor válido dentro do limite.')
       return
@@ -91,13 +108,25 @@ export default function Modal({ gift, quantity, closeModal }: ModalProps) {
         <button className={styles.closeButton} onClick={closeModal}>
           <AiOutlineClose />
         </button>
-        <p>{gift.name}</p>
 
+        <p>{gift.name}</p>
         <h4>Valor total:</h4>
         <p>{gift.total_price}</p>
 
         {!paymentConfirmed && (
           <>
+            <label htmlFor="contributorName" className={styles.label}>
+              Seu nome
+            </label>
+            <input
+              id="contributorName"
+              type="text"
+              value={contributorName}
+              onChange={(e) => setContributorName(e.target.value)}
+              placeholder="Digite seu nome"
+              className={styles.input}
+            />
+
             <label htmlFor="amount" className={styles.label}>
               Com quanto você gostaria de ajudar?
             </label>
@@ -115,7 +144,7 @@ export default function Modal({ gift, quantity, closeModal }: ModalProps) {
                 Total:{' '}
                 {new Intl.NumberFormat('pt-BR', {
                   style: 'currency',
-                  currency: 'BRL'
+                  currency: 'BRL',
                 }).format(totalPrice)}
               </p>
             )}
@@ -130,10 +159,7 @@ export default function Modal({ gift, quantity, closeModal }: ModalProps) {
           </div>
         ) : (
           <div className={styles.modalButtons}>
-            <button
-              onClick={handlePayment}
-              disabled={!totalPrice || !!error}
-            >
+            <button onClick={handlePayment} disabled={!totalPrice || !!error}>
               Ir para pagamento
             </button>
           </div>
@@ -142,12 +168,13 @@ export default function Modal({ gift, quantity, closeModal }: ModalProps) {
         <div className={styles.contributors}>
           <h4>Pessoas que já contribuíram:</h4>
           <ul>
-            {contributors.map((person, index) => (
+            {contributions.map((person, index) => (
               <li key={index}>
-                {person.name} -{' '}
+                {new Date(person.created_at).toLocaleDateString('pt-BR')} -{' '}
+                {person.user_name} -{' '}
                 {new Intl.NumberFormat('pt-BR', {
                   style: 'currency',
-                  currency: 'BRL'
+                  currency: 'BRL',
                 }).format(person.amount)}
               </li>
             ))}
