@@ -11,12 +11,12 @@ type Gift = {
   image_url: string
 }
 
-export default function GiftItem({ gift, onShowModal }: { gift: Gift, onShowModal: (gift: Gift, quantity: number) => void }) {
+export default function GiftItem({ gift, onShowModal }: { gift: Gift, onShowModal: (gift: Gift) => void }) {
   const [quantity, setQuantity] = useState(0)
 
   const increment = () => setQuantity(prev => prev + 1)
   const decrement = () => setQuantity(prev => Math.max(prev - 1, 0))
-  const confirm = () => quantity > 0 && onShowModal(gift, quantity)
+  const confirm = () => onShowModal(gift)
 
   return (
     <div className={styles.card}>
@@ -29,14 +29,8 @@ export default function GiftItem({ gift, onShowModal }: { gift: Gift, onShowModa
         />
       </div>
       <h2>{gift.name}</h2>
-      <p>{gift.description}</p>
       <span>{gift.total_price}</span>
-      <div className={styles.picker}>
-        <button onClick={decrement}>-</button>
-        <span>{quantity}</span>
-        <button onClick={increment}>+</button>
-      </div>
-      <button className={styles.confirmBtn} onClick={confirm}>Confirmar</button>
+      <button className={styles.confirmBtn} onClick={confirm}>Quero apoiar este casal</button>
     </div>
   )
 }

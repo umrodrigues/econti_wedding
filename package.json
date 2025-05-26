@@ -11,7 +11,7 @@
   "dependencies": {
     "next": "15.3.1",
     "pix-payload": "^1.0.4",
-    "pnpm": "^10.10.0",
+    "pnpm": "^10.11.0",
     "qrcode-pix": "^5.0.0",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
