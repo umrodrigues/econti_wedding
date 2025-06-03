@@ -113,9 +113,32 @@ export default function Modal({ gift, closeModal }: ModalProps) {
     }
   }
 
-  const handlePaymentClick = () => {
-    console.log('Usuário clicou que já realizou o pagamento.')
+  const handlePaymentClick = async () => {
+  try {
+    const res = await fetch(`/api/contributions/${gift.id}/insert`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_name: contributorName,
+        amount: totalPrice,
+      }),
+    })
+
+    const data = await res.json()
+
+    if (res.ok) {
+      console.log('Contribuição registrada:', data)
+      // você pode atualizar a lista ou exibir uma mensagem de sucesso aqui
+    } else {
+      console.error('Erro ao registrar contribuição:', data)
+    }
+  } catch (error) {
+    console.error('Erro de rede:', error)
   }
+}
+
 
   return (
     <div className={styles.modalOverlay} onClick={closeModal}>
