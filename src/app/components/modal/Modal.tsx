@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import ReactQRCode from 'react-qr-code'
-import { AiOutlineClose } from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineCopy } from 'react-icons/ai'
 import styles from './Modal.module.scss'
 import { QrCodePix } from 'qrcode-pix'
 import Image from 'next/image'
@@ -37,6 +37,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
   const [loading, setLoading] = useState(true)
   const [paymentConfirmed, setPaymentConfirmed] = useState(false)
   const [pixPayload, setPixPayload] = useState<string | null>(null)
+  const [copySuccess, setCopySuccess] = useState('')
 
   const maxPrice = parseCurrencyToNumber(gift.total_price)
   const totalPrice = parseCurrencyToNumber(customAmount)
@@ -49,8 +50,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
         if (res.ok) {
           setContributions(data.contributions)
         }
-      } catch (err) {
-        console.error(err)
+      } catch {
       } finally {
         setLoading(false)
       }
@@ -102,6 +102,21 @@ export default function Modal({ gift, closeModal }: ModalProps) {
     setPaymentConfirmed(true)
   }
 
+  const handleCopyPixCode = () => {
+    if (pixPayload) {
+      navigator.clipboard.writeText(pixPayload)
+        .then(() => {
+          setCopySuccess('Código copiado!')
+          setTimeout(() => setCopySuccess(''), 2000)
+        })
+        .catch(() => setCopySuccess('Falha ao copiar'))
+    }
+  }
+
+  const handlePaymentClick = () => {
+    console.log('Usuário clicou que já realizou o pagamento.')
+  }
+
   return (
     <div className={styles.modalOverlay} onClick={closeModal}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
@@ -144,11 +159,34 @@ export default function Modal({ gift, closeModal }: ModalProps) {
             </button>
           </>
         ) : (
-          <div className={styles.qrSection}>
-            <ReactQRCode value={pixPayload!} size={200} />
-            <p>Escaneie o QR Code para pagar</p>
-          </div>
+          <>
+            <div className={styles.qrSection}>
+              <ReactQRCode value={pixPayload!} size={200} />
+              <p>Escaneie o QR Code para pagar</p>
+            </div>
+
+            <div className={styles.copySection}>
+              <label htmlFor="pixCode" className={styles.label}>Código Pix (copia e cola):</label>
+              <textarea
+                id="pixCode"
+                readOnly
+                value={pixPayload || ''}
+                className={styles.textarea}
+                rows={3}
+              />
+              <button onClick={handleCopyPixCode} className={styles.copyButton} aria-label="Copiar código Pix">
+                <AiOutlineCopy /> Copiar código
+              </button>
+              {copySuccess && <p className={styles.copySuccess}>{copySuccess}</p>}
+            </div>
+
+            <button onClick={handlePaymentClick} className={styles.confirmButton}>
+            Já realizou o pagamento? Clique aqui.
+          </button>
+          </>
         )}
+
+
 
         <div className={styles.contributors}>
           <h3>Contribuições:</h3>
