@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import GiftItem from '../gift-item/GiftItem'
 import Modal from '../modal/Modal'
 import styles from './Content.module.scss'
+import Header from '../header/Header'
 
 type Gift = {
   id: number
@@ -15,7 +16,6 @@ type Gift = {
 export default function Content() {
   const [showModal, setShowModal] = useState(false)
   const [gift, setGift] = useState<Gift | null>(null)
-  const [quantity, setQuantity] = useState(0)
   const [gifts, setGifts] = useState<Gift[]>([])
 
   useEffect(() => {
@@ -28,9 +28,8 @@ export default function Content() {
     fetchGifts();
   }, []);
 
-  const onShowModal = (gift: Gift, quantity: number) => {
+  const onShowModal = (gift: Gift) => {
     setGift(gift)
-    setQuantity(quantity)
     setShowModal(true)
   }
 
@@ -38,6 +37,9 @@ export default function Content() {
 
   return (
     <>
+
+    <Header />
+
       <main className={styles.main}>
         <h1>Lista de Presentes Divertidos</h1>
         <div className={styles.grid}>
@@ -50,7 +52,6 @@ export default function Content() {
       {showModal && gift && (
         <Modal
           gift={gift}
-          quantity={quantity}
           closeModal={closeModal}
         />
       )}

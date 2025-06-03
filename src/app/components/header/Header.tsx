@@ -1,15 +1,17 @@
 'use client'
-import styles from './Header.module.scss'
+
 import Link from 'next/link'
+import styles from './Header.module.scss'
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <Link href="/" className={styles.logo}>Econti Wedding</Link>
-      <nav className={styles.nav}>
-        <Link href="/">Home</Link>
-        <Link href="/cart">Carrinho</Link>
-      </nav>
+      <div className={styles.container}>
+        <h2 className={styles.title}>Econti Wedding 💍</h2>
+        <Link href="/confirmation-presence" className={styles.button}>
+          Confirmação de presença
+        </Link>
+      </div>
     </header>
   )
 }

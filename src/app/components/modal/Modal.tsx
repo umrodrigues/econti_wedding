@@ -130,7 +130,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
 
     if (res.ok) {
       console.log('Contribuição registrada:', data)
-      // você pode atualizar a lista ou exibir uma mensagem de sucesso aqui
+      window.location.reload()
     } else {
       console.error('Erro ao registrar contribuição:', data)
     }

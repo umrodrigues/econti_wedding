@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import styles from './GiftItem.module.scss'
 
-type Gift = {
+type GiftItemProps = {
   id: number
   name: string
   total_price: string
@@ -10,7 +10,7 @@ type Gift = {
   remaining_price: string
 }
 
-export default function GiftItem({ gift, onShowModal }: { gift: Gift, onShowModal: (gift: Gift) => void }) {
+export default function GiftItem({ gift, onShowModal }: { gift: GiftItemProps, onShowModal: (gift: GiftItemProps) => void }) {
 
   const confirm = () => onShowModal(gift)
 
