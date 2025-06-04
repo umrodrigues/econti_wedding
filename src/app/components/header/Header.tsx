@@ -21,7 +21,7 @@ export default function Header() {
         </button>
       </div>
 
-      {showConfirmation && <ConfirmationPresenceContent />}
+      {/* {showConfirmation && <ConfirmationPresenceContent />} */}
     </header>
   )
 }
