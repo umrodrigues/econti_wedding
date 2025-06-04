@@ -22,7 +22,6 @@ export default function ConfirmationPresenceContent() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     alert(`Obrigado pela confirmação, ${formData.nome}!`)
-    // Aqui você poderia enviar os dados para o backend
   }
 
   return (

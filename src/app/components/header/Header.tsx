@@ -1,17 +1,27 @@
 'use client'
 
-import Link from 'next/link'
+import { useState } from 'react'
 import styles from './Header.module.scss'
+import ConfirmationPresenceContent from '../confirmation-presence/content/confirmation-presence-content'
 
 export default function Header() {
+  const [showConfirmation, setShowConfirmation] = useState(false)
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setShowConfirmation(true)
+  }
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <h2 className={styles.title}>Econti Wedding 💍</h2>
-        <Link href="/confirmation-presence" className={styles.button}>
+        <button onClick={handleClick} className={styles.button}>
           Confirmação de presença
-        </Link>
+        </button>
       </div>
+
+      {showConfirmation && <ConfirmationPresenceContent />}
     </header>
   )
 }

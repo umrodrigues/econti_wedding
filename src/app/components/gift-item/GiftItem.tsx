@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import styles from './GiftItem.module.scss'
 
-type GiftItemProps = {
+export type GiftItemProps = {
   id: number
   name: string
   total_price: string

@@ -1,22 +1,15 @@
 'use client'
 import { useState, useEffect } from 'react'
-import GiftItem from '../gift-item/GiftItem'
+import GiftItem, { GiftItemProps } from '../gift-item/GiftItem'
 import Modal from '../modal/Modal'
 import styles from './Content.module.scss'
 import Header from '../header/Header'
 
-type Gift = {
-  id: number
-  name: string
-  description: string
-  total_price: string
-  image_url: string
-}
 
 export default function Content() {
   const [showModal, setShowModal] = useState(false)
-  const [gift, setGift] = useState<Gift | null>(null)
-  const [gifts, setGifts] = useState<Gift[]>([])
+  const [gift, setGift] = useState<GiftItemProps | null>(null)
+  const [gifts, setGifts] = useState<GiftItemProps[]>([])
 
   useEffect(() => {
     const fetchGifts = async () => {
@@ -28,7 +21,7 @@ export default function Content() {
     fetchGifts();
   }, []);
 
-  const onShowModal = (gift: Gift) => {
+  const onShowModal = (gift: GiftItemProps) => {
     setGift(gift)
     setShowModal(true)
   }
@@ -41,7 +34,7 @@ export default function Content() {
     <Header />
 
       <main className={styles.main}>
-        <h1>Lista de Presentes Divertidos</h1>
+        <h1>Lista de Presentes</h1>
         <div className={styles.grid}>
           {gifts.map((gift) => (
             <GiftItem key={gift.id} gift={gift} onShowModal={onShowModal} />
