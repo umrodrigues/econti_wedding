@@ -11,7 +11,6 @@ export type GiftItemProps = {
 }
 
 export default function GiftItem({ gift, onShowModal }: { gift: GiftItemProps, onShowModal: (gift: GiftItemProps) => void }) {
-
   const confirm = () => onShowModal(gift)
 
   return (
@@ -20,8 +19,9 @@ export default function GiftItem({ gift, onShowModal }: { gift: GiftItemProps, o
         <Image
           src={gift.image_url}
           alt={gift.name}
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <h2>{gift.name}</h2>
@@ -31,3 +31,4 @@ export default function GiftItem({ gift, onShowModal }: { gift: GiftItemProps, o
     </div>
   )
 }
+
