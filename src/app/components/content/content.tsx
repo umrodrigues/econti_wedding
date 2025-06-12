@@ -4,6 +4,7 @@ import GiftItem, { GiftItemProps } from '../gift-item/GiftItem'
 import Modal from '../modal/Modal'
 import styles from './Content.module.scss'
 import Header from '../header/Header'
+import { FaRegLightbulb } from 'react-icons/fa'
 
 
 export default function Content() {
@@ -32,6 +33,11 @@ export default function Content() {
     <>
 
     <Header />
+    <div className={styles.floatingInfo}>
+    <FaRegLightbulb className={styles.icon} />
+    Os valores exibidos são sugestões, contribua com o valor que desejar!
+    </div>
+
 
       <main className={styles.main}>
         <h1>Lista de Presentes</h1>
