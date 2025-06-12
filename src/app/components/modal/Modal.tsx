@@ -12,6 +12,7 @@ type ModalProps = {
     id: number
     name: string
     total_price: string
+    remaining_price: string
     image?: string
   }
   closeModal: () => void
@@ -40,6 +41,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
   const [copySuccess, setCopySuccess] = useState('')
 
   const maxPrice = parseCurrencyToNumber(gift.total_price)
+  const remainingPrice = parseCurrencyToNumber(gift.remaining_price)
   const totalPrice = parseCurrencyToNumber(customAmount)
 
   useEffect(() => {
@@ -50,7 +52,6 @@ export default function Modal({ gift, closeModal }: ModalProps) {
         if (res.ok) {
           setContributions(data.contributions)
         }
-      } catch {
       } finally {
         setLoading(false)
       }
@@ -66,8 +67,8 @@ export default function Modal({ gift, closeModal }: ModalProps) {
       return
     }
     const parsed = parseCurrencyToNumber(value)
-    if (parsed > maxPrice) {
-      setError('Valor maior que o total')
+    if (parsed > remainingPrice) {
+      setError('Valor maior que o restante')
     } else {
       setError('')
     }
@@ -89,11 +90,15 @@ export default function Modal({ gift, closeModal }: ModalProps) {
   }
 
   const handlePayment = async () => {
+    if (remainingPrice <= 0) {
+      setError('Este presente já foi totalmente pago.')
+      return
+    }
     if (!contributorName.trim()) {
       setError('Informe seu nome')
       return
     }
-    if (totalPrice <= 0 || totalPrice > maxPrice) {
+    if (totalPrice <= 0 || totalPrice > remainingPrice) {
       setError('Informe um valor válido')
       return
     }
@@ -114,35 +119,27 @@ export default function Modal({ gift, closeModal }: ModalProps) {
   }
 
   const handlePaymentClick = async () => {
-  try {
-    const res = await fetch(`/api/contributions/${gift.id}/insert`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        user_name: contributorName,
-        amount: totalPrice,
-      }),
-    })
-
-    const data = await res.json()
-
-    if (res.ok) {
-      console.log('Contribuição registrada:', data)
-      window.location.reload()
-    } else {
-      console.error('Erro ao registrar contribuição:', data)
-    }
-  } catch (error) {
-    console.error('Erro de rede:', error)
+    try {
+      const res = await fetch(`/api/contributions/${gift.id}/insert`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_name: contributorName, amount: totalPrice }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setContributions(prev => [...prev, { user_name: contributorName, amount: totalPrice, created_at: new Date().toISOString() }])
+        setContributorName('')
+        setCustomAmount('')
+        setError('')
+        setPaymentConfirmed(false)
+        setPixPayload(null)
+      }
+    } catch {}
   }
-}
-
 
   return (
     <div className={styles.modalOverlay} onClick={closeModal}>
-      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+      <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <button className={styles.closeButton} onClick={closeModal}>
           <AiOutlineClose />
         </button>
@@ -159,6 +156,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
 
         <h2 className={styles.giftTitle}>{gift.name}</h2>
         <p className={styles.total}>Total: {gift.total_price}</p>
+        <p className={styles.total}>Restante: {gift.remaining_price}</p>
 
         {!paymentConfirmed ? (
           <>
@@ -166,18 +164,22 @@ export default function Modal({ gift, closeModal }: ModalProps) {
               type="text"
               placeholder="Seu nome"
               value={contributorName}
-              onChange={(e) => setContributorName(e.target.value)}
+              onChange={e => setContributorName(e.target.value)}
               className={styles.input}
             />
             <input
               type="text"
               placeholder="Valor que quer contribuir"
               value={customAmount}
-              onChange={(e) => handleAmountChange(e.target.value)}
+              onChange={e => handleAmountChange(e.target.value)}
               className={styles.input}
             />
             {error && <p className={styles.error}>{error}</p>}
-            <button onClick={handlePayment} disabled={!totalPrice || !!error} className={styles.payButton}>
+            <button
+              onClick={handlePayment}
+              disabled={!totalPrice || !!error || remainingPrice <= 0}
+              className={styles.payButton}
+            >
               Ir para o pagamento
             </button>
           </>
@@ -204,12 +206,10 @@ export default function Modal({ gift, closeModal }: ModalProps) {
             </div>
 
             <button onClick={handlePaymentClick} className={styles.confirmButton}>
-            Já realizou o pagamento? Clique aqui.
-          </button>
+              Já realizou o pagamento? Clique aqui.
+            </button>
           </>
         )}
-
-
 
         <div className={styles.contributors}>
           <h3>Contribuições:</h3>
