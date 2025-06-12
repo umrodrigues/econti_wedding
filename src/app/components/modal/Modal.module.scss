@@ -11,7 +11,7 @@
 }
 
 .modal {
-  background: #fff;
+  background: #ffffff;
   padding: 2rem;
   border-radius: 16px;
   width: 100%;
@@ -41,7 +41,7 @@
   font-weight: bold;
   margin-bottom: 1rem;
   font-size: 1.1rem;
-  color: #444;
+  color: #0033a0;
 }
 
 .input {
@@ -49,15 +49,15 @@
   padding: 0.7rem;
   margin-top: 1rem;
   border: 1px solid #ccc;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 8px;
   font-size: 1rem;
-  color: #444;
+  color: #0033a0;
+}
 
-  &:focus {
-    border-color: #cc2b5e;
-    outline: none;
-  }
+.input:focus {
+  border-color: #0055ff;
+  outline: none;
 }
 
 .error {
@@ -69,7 +69,7 @@
 .payButton {
   margin-top: 1.5rem;
   width: 100%;
-  background: #cc2b5e;
+  background: #0055ff;
   color: white;
   border: none;
   padding: 0.8rem;
@@ -77,62 +77,60 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
+}
 
-  &:hover {
-    background: #b3004d;
-  }
+.payButton:hover {
+  background: #0033a0;
+}
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
+.payButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .qrSection {
   margin-top: 1rem;
+}
 
-  p {
-    margin-top: 1rem;
-    font-weight: 500;
-    color: #444;
-  }
+.qrSection p {
+  margin-top: 1rem;
+  font-weight: 500;
+  color: #0033a0;
 }
 
 .contributors {
   margin-top: 2rem;
   text-align: left;
-
-  h3 {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
-    color: #333;
-  }
-
-  p {
-    color: #444;
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      background-color: #f2f2f2;
-      margin-bottom: 0.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      color: #444;
-      font-size: 0.95rem;
-    }
-  }
 }
 
+.contributors h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #0033a0;
+}
 
-.giftTitle{
-  color: #444;
+.contributors p {
+  color: #0033a0;
+}
+
+.contributors ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contributors li {
+  background-color: #f0f6ff;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: #0033a0;
+  font-size: 0.95rem;
+}
+
+.giftTitle {
+  color: #0033a0;
   margin-bottom: 1rem;
 }
-
 
 .copySection {
   margin-top: 1rem;
@@ -142,6 +140,7 @@
   display: block;
   margin-bottom: 0.3rem;
   font-weight: 600;
+  color: #0033a0;
 }
 
 .textarea {
@@ -152,6 +151,7 @@
   font-size: 0.9rem;
   border: 1px solid #ccc;
   border-radius: 4px;
+  color: #0033a0;
 }
 
 .copyButton {
@@ -159,7 +159,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background-color: #0070f3;
+  background-color: #0055ff;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -170,7 +170,7 @@
 }
 
 .copyButton:hover {
-  background-color: #005bb5;
+  background-color: #0033a0;
 }
 
 .copySuccess {
@@ -178,7 +178,6 @@
   color: green;
   font-weight: 600;
 }
-
 
 .confirmButton {
   margin-top: 1.5rem;
