@@ -1,7 +1,7 @@
 .header {
-  background: linear-gradient(135deg, #0033a0, #0055ff);
+  background: linear-gradient(135deg, #1c3b6c, #486b92);
   padding: 1.5rem 2rem;
-  border-bottom: 2px solid #002080;
+  border-bottom: 2px solid #14305a;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
   font-family: 'Arial', sans-serif;
   font-size: 1rem;
@@ -20,7 +20,7 @@
 .title {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #ffffff;
+  color: #f8f8f8;
   font-family: 'Cursive', sans-serif;
 }
 
@@ -31,8 +31,8 @@
 }
 
 .button {
-  background-color: #0055ff;
-  color: white;
+  background-color: #486b92;
+  color: #f8f8f8;
   padding: 0.6rem 1.2rem;
   border-radius: 999px;
   text-decoration: none;
@@ -45,7 +45,7 @@
 }
 
 .button:hover {
-  background-color: #0033a0;
+  background-color: #1c3b6c;
 }
 
 .modalOverlay {
@@ -62,7 +62,7 @@
 }
 
 .modal {
-  background: white;
+  background: #f8f8f8;
   padding: 2rem;
   border-radius: 1rem;
   max-width: 600px;
@@ -88,7 +88,7 @@
 .modal h3 {
   font-size: 1.4rem;
   margin-bottom: 0.8rem;
-  color: #0033a0;
+  color: #1c3b6c;
 }
 
 .modal p {

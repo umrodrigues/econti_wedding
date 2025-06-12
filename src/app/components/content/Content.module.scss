@@ -1,7 +1,14 @@
+$primary-dark: #1c3b6c;
+$primary-medium: #486b92;
+$primary-light: #f8f8f8;
+$primary-gradient-start: #f0f6ff;
+$primary-gradient-mid: #e0e8ff;
+
 .shimmerGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -16,7 +23,12 @@
 .shimmerCard {
   height: 220px;
   border-radius: 12px;
-  background: linear-gradient(90deg, #f0f6ff 25%, #e0e8ff 37%, #f0f6ff 63%);
+  background: linear-gradient(
+    90deg,
+    $primary-gradient-start 25%,
+    $primary-gradient-mid 37%,
+    $primary-gradient-start 63%
+  );
   background-size: 400% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -26,7 +38,12 @@
   height: 120px;
   margin-top: 2rem;
   border-radius: 12px 12px 0 0;
-  background: linear-gradient(90deg, #f0f6ff 25%, #e0e8ff 37%, #f0f6ff 63%);
+  background: linear-gradient(
+    90deg,
+    $primary-gradient-start 25%,
+    $primary-gradient-mid 37%,
+    $primary-gradient-start 63%
+  );
   background-size: 400% 100%;
   animation: shimmer 1.5s infinite;
 }
@@ -44,9 +61,10 @@
   padding: 2rem 1rem;
   max-width: 1350px;
   margin: 0 auto;
+
   h1 {
     text-align: center;
-    color: #0055ff;
+    color: $primary-medium;
     margin-bottom: 2rem;
   }
 }
@@ -56,6 +74,7 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
   align-items: stretch;
+
   @media (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -71,24 +90,27 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #f0f6ff;
+  background-color: $primary-gradient-start;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s ease;
   height: 100%;
+
   h2 {
     margin: 0.5rem 0;
-    color: #0033a0;
+    color: $primary-dark;
     font-size: 1.1rem;
   }
+
   p {
     font-size: 0.95rem;
-    color: #444;
+    color: darken($primary-medium, 20%);
     margin: 0.5rem 0;
     flex-grow: 1;
   }
+
   span {
     display: block;
     margin: 0.5rem 0;
@@ -116,8 +138,9 @@
   justify-content: center;
   margin: 1rem 0;
   gap: 0.5rem;
+
   button {
-    background-color: #0055ff;
+    background-color: $primary-medium;
     color: white;
     border: none;
     padding: 0.5rem 0.8rem;
@@ -125,6 +148,7 @@
     font-size: 1rem;
     cursor: pointer;
   }
+
   span {
     font-weight: bold;
     min-width: 24px;
@@ -133,7 +157,7 @@
 }
 
 .confirmBtn {
-  background-color: #0033a0;
+  background-color: $primary-dark;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -149,7 +173,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, #0055ff, #0033a0);
+  background: linear-gradient(135deg, $primary-medium, $primary-dark);
   color: white;
   padding: 1rem 1.5rem;
   border-radius: 16px;
@@ -159,6 +183,7 @@
   z-index: 999;
   animation: floatIn 0.4s ease-out;
   font-weight: 500;
+
   @media (max-width: 600px) {
     left: 1rem;
     right: 1rem;

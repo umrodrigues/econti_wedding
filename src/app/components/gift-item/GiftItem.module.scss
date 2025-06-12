@@ -1,24 +1,28 @@
+$primary-dark: #1c3b6c;
+$primary-medium: #486b92;
+$primary-light: #f8f8f8;
+
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: #f0f6ff;
+  background-color: $primary-light;
   padding: 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(28, 59, 108, 0.15);
   text-align: center;
   transition: transform 0.2s ease;
   height: 100%;
 
   h2 {
     margin: 0.5rem 0;
-    color: #0033a0;
+    color: $primary-dark;
     font-size: 1.1rem;
   }
 
   p {
     font-size: 0.95rem;
-    color: #555;
+    color: $primary-medium;
     margin: 0.5rem 0;
     flex-grow: 1;
   }
@@ -33,6 +37,7 @@
 
 .card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(28, 59, 108, 0.3);
 }
 
 .imageWrapper {
@@ -52,13 +57,18 @@
   gap: 0.5rem;
 
   button {
-    background-color: #0055ff;
+    background-color: $primary-medium;
     color: white;
     border: none;
     padding: 0.5rem 0.8rem;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: $primary-dark;
   }
 
   span {
@@ -69,11 +79,16 @@
 }
 
 .confirmBtn {
-  background-color: #0033a0;
+  background-color: $primary-dark;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
   margin-top: 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.confirmBtn:hover {
+  background-color: $primary-medium;
 }
