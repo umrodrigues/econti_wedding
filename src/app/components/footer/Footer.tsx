@@ -1,9 +1,15 @@
-import styles from './Footer.module.scss'
+import React from 'react';
+import styles from './Footer.module.scss';
 
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <p>© 2025 Econti Wedding. Todos os direitos reservados.</p>
+      <p>
+        Desenvolvido por{' '}
+        <a href="https://www.lunaristech.com.br" target="_blank" rel="noopener noreferrer">
+          LunaristTech
+        </a>
+      </p>
     </footer>
-  )
+  );
 }

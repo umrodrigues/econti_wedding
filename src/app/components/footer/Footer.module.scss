@@ -1,9 +1,18 @@
 .footer {
-    padding: 1rem;
-    text-align: center;
-    background-color: #fbeff5;
-    color: #555;
-    margin-top: 2rem;
-    border-top: 1px solid #ccc;
+  background-color: #0033a0;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.9rem;
+
+  a {
+    color: #0055ff;
+    text-decoration: none;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
-  
+}
