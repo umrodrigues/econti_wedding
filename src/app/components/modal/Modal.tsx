@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react'
 import ReactQRCode from 'react-qr-code'
 import { AiOutlineClose, AiOutlineCopy } from 'react-icons/ai'
 import styles from './Modal.module.scss'
-import { QrCodePix } from 'qrcode-pix'
 import Image from 'next/image'
+import { createStaticPix } from 'pix-utils'
 
 type ModalProps = {
   gift: {
@@ -28,6 +28,10 @@ function parseCurrencyToNumber(value: string): number {
   const cleaned = value.replace(/[^\d,.-]/g, '').replace(',', '.')
   const parsed = parseFloat(cleaned)
   return isNaN(parsed) ? 0 : parsed
+}
+
+function cleanText(text: string): string {
+  return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').slice(0, 40)
 }
 
 export default function Modal({ gift, closeModal }: ModalProps) {
@@ -74,19 +78,26 @@ export default function Modal({ gift, closeModal }: ModalProps) {
     }
   }
 
-  //@ts-ignore
   const generatePixCode = async () => {
-    const qrCodePix = QrCodePix({
-      version: '01',
-      key: '04182410076',
-      name: 'ECONTIEVENTOS',
-      city: 'SAO PAULO',
-      transactionId: 'ECONTI123',
-      message: `Presente: ${gift.name}${contributorName ? ` - ${contributorName}` : ''}`,
-      value: totalPrice,
+    const amount = Math.min(Math.max(0.01, parseFloat(totalPrice.toFixed(2))), remainingPrice)
+    const txid = 'EcontiWedding'
+    let info = `Presente: ${gift.name}${contributorName ? ` - ${contributorName}` : ''}`
+    info = cleanText(info)
+
+    const pix = createStaticPix({
+      pixKey: 'fazopixprocasamento@gmail.com',
+      merchantName: 'ECONTICOMIGO',
+      merchantCity: 'SAO PAULO',
+      txid,
+      transactionAmount: amount,
+      infoAdicional: info,
     })
 
-    return qrCodePix.payload()
+    if ('message' in pix) {
+      throw new Error(pix.message)
+    }
+
+    return pix.toBRCode()
   }
 
   const handlePayment = async () => {
@@ -102,9 +113,14 @@ export default function Modal({ gift, closeModal }: ModalProps) {
       setError('Informe um valor válido')
       return
     }
-    const payload = await generatePixCode()
-    setPixPayload(payload)
-    setPaymentConfirmed(true)
+    try {
+      const payload = await generatePixCode()
+      setPixPayload(payload)
+      setPaymentConfirmed(true)
+      setError('')
+    } catch {
+      setError('Erro ao gerar código Pix')
+    }
   }
 
   const handleCopyPixCode = () => {
@@ -125,7 +141,6 @@ export default function Modal({ gift, closeModal }: ModalProps) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ user_name: contributorName, amount: totalPrice }),
       })
-      const data = await res.json()
       if (res.ok) {
         setContributions(prev => [...prev, { user_name: contributorName, amount: totalPrice, created_at: new Date().toISOString() }])
         setContributorName('')

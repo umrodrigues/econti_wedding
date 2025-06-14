@@ -23,7 +23,7 @@ export default function Header() {
             Confirmação de presença
           </a>
           <button className={styles.button} onClick={handleOpenModal}>
-            Reserva de hotel
+            Reserva de Cabana
           </button>
         </div>
       </div>
@@ -34,7 +34,7 @@ export default function Header() {
             <button className={styles.closeButton} onClick={handleCloseModal}>
               ×
             </button>
-            <h3>Reserva de Hotel 🏨</h3>
+            <h3>Reserva de Cabana 🏨</h3>
             <p>
               O casamento acontecerá no dia <strong>14/06 às 16h</strong>. Para facilitar sua hospedagem, sugerimos reservar com o hotel parceiro.
             </p>
