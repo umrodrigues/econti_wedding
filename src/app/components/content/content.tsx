@@ -6,6 +6,7 @@ import styles from './Content.module.scss'
 import Header from '../header/Header'
 import { FaRegLightbulb } from 'react-icons/fa'
 import Footer from '../footer/Footer'
+import MovingHeart from '../moving-heart/MovingHeart'
 
 function ShimmerGrid() {
   return (
@@ -66,6 +67,7 @@ export default function Content() {
       </main>
       {loading ? <ShimmerFooter /> : <Footer />}
       {showModal && gift && <Modal gift={gift} closeModal={closeModal} />}
+      <MovingHeart />
     </>
   )
 }
