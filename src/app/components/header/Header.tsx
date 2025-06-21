@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import styles from './Header.module.scss'
 
 export default function Header() {
@@ -35,6 +36,13 @@ export default function Header() {
               ×
             </button>
             <h3>Reserva de Cabana 🏨</h3>
+            <Image
+              src="/cabana.jpg"
+              alt="Imagem da cabana"
+              width={400}
+              height={250}
+              className={styles.cabanaImage}
+            />
             <p>
               O casamento acontecerá no dia <strong>14/06 às 16h</strong>. Para facilitar sua hospedagem, sugerimos reservar com o hotel parceiro.
             </p>
