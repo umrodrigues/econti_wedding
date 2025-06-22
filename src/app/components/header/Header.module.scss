@@ -50,23 +50,22 @@
 
 .modalOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 1rem;
+  overflow-y: auto;
   z-index: 1000;
 }
 
 .modal {
   background: #f8f8f8;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 1rem;
+  width: 100%;
   max-width: 600px;
-  width: 90%;
   position: relative;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -80,9 +79,10 @@
   right: 1rem;
   background: transparent;
   border: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   cursor: pointer;
   color: #888;
+  z-index: 10;
 }
 
 .modal h3 {
@@ -113,7 +113,6 @@
   background-color: #1ebd59;
 }
 
-
 .carousel {
   position: relative;
   display: flex;
@@ -121,12 +120,13 @@
   justify-content: center;
   margin: 1.5rem 0;
   gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 .sliderWrapper {
   position: relative;
-  width: 600px;
-  height: 450px;
+  width: 100%;
+  height: 400px;
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -134,8 +134,8 @@
 
 .slider {
   display: flex;
-  height: 100%;
   transition: transform 0.6s ease-in-out;
+  height: 100%;
 }
 
 .imageContainer {
@@ -146,20 +146,76 @@
 
 .cabanaImage {
   object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
   border-radius: 1rem;
 }
 
 .navButton {
   background: none;
   border: none;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #486b92;
-  opacity: 0.4;
+  opacity: 0.5;
   transition: opacity 0.3s ease, transform 0.2s ease;
   cursor: pointer;
+}
 
-  &:hover {
-    opacity: 0.8;
-    transform: scale(1.05);
+.navButton:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 480px) {
+  .modal {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .modal h3 {
+    font-size: 1.1rem;
+  }
+
+  .modal p {
+    font-size: 0.9rem;
+  }
+
+  .whatsappButton {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .sliderWrapper {
+    height: 220px;
+  }
+
+  .closeButton {
+    font-size: 1.8rem;
+    top: 0.5rem;
+    right: 0.6rem;
+  }
+
+  .navButton {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .modal {
+    font-size: 0.85rem;
+    padding: 0.8rem;
+  }
+
+  .modal h3 {
+    font-size: 1rem;
+  }
+
+  .whatsappButton {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .sliderWrapper {
+    height: 180px;
   }
 }
