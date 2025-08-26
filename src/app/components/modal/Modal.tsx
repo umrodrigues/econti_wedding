@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import ReactQRCode from 'react-qr-code'
 import { AiOutlineClose, AiOutlineCopy } from 'react-icons/ai'
 import styles from './Modal.module.scss'
@@ -153,96 +154,237 @@ export default function Modal({ gift, closeModal }: ModalProps) {
   }
 
   return (
-    <div className={styles.modalOverlay} onClick={closeModal}>
-      <div className={styles.modal} onClick={e => e.stopPropagation()}>
-        <button className={styles.closeButton} onClick={closeModal}>
-          <AiOutlineClose />
-        </button>
+    <AnimatePresence>
+      <motion.div 
+        className={styles.modalOverlay} 
+        onClick={closeModal}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <motion.div 
+          className={styles.modal} 
+          onClick={e => e.stopPropagation()}
+          initial={{ opacity: 0, scale: 0.8, y: 50 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 50 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+        >
+          <motion.button 
+            className={styles.closeButton} 
+            onClick={closeModal}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <AiOutlineClose />
+          </motion.button>
 
-        {gift.image?.trim() && (
-          <Image
-            src={gift.image}
-            alt={gift.name}
-            width={300}
-            height={300}
-            className={styles.image}
-          />
-        )}
-
-        <h2 className={styles.giftTitle}>{gift.name}</h2>
-        <p className={styles.total}>Total: {gift.total_price}</p>
-        <p className={styles.total}>Restante: {gift.remaining_price}</p>
-
-        {!paymentConfirmed ? (
-          <>
-            <input
-              type="text"
-              placeholder="Seu nome"
-              value={contributorName}
-              onChange={e => setContributorName(e.target.value)}
-              className={styles.input}
-            />
-            <input
-              type="text"
-              placeholder="Valor que quer contribuir"
-              value={customAmount}
-              onChange={e => handleAmountChange(e.target.value)}
-              className={styles.input}
-            />
-            {error && <p className={styles.error}>{error}</p>}
-            <button
-              onClick={handlePayment}
-              disabled={!totalPrice || !!error || remainingPrice <= 0}
-              className={styles.payButton}
+          {gift.image?.trim() && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
             >
-              Ir para o pagamento
-            </button>
-          </>
-        ) : (
-          <>
-            <div className={styles.qrSection}>
-              <ReactQRCode value={pixPayload!} size={200} />
-              <p>Escaneie o QR Code para pagar</p>
-            </div>
-
-            <div className={styles.copySection}>
-              <label htmlFor="pixCode" className={styles.label}>Código Pix (copia e cola):</label>
-              <textarea
-                id="pixCode"
-                readOnly
-                value={pixPayload || ''}
-                className={styles.textarea}
-                rows={3}
+              <Image
+                src={gift.image}
+                alt={gift.name}
+                width={300}
+                height={300}
+                className={styles.image}
               />
-              <button onClick={handleCopyPixCode} className={styles.copyButton} aria-label="Copiar código Pix">
-                <AiOutlineCopy /> Copiar código
-              </button>
-              {copySuccess && <p className={styles.copySuccess}>{copySuccess}</p>}
-            </div>
-
-            <button onClick={handlePaymentClick} className={styles.confirmButton}>
-              Já realizou o pagamento? Clique aqui.
-            </button>
-          </>
-        )}
-
-        <div className={styles.contributors}>
-          <h3>Contribuições:</h3>
-          {loading ? (
-            <p>Carregando...</p>
-          ) : contributions.length === 0 ? (
-            <p>Nenhuma contribuição ainda.</p>
-          ) : (
-            <ul>
-              {contributions.map((c, i) => (
-                <li key={i}>
-                  {new Date(c.created_at).toLocaleDateString('pt-BR')} - {c.user_name} - {c.amount}
-                </li>
-              ))}
-            </ul>
+            </motion.div>
           )}
-        </div>
-      </div>
-    </div>
+
+          <motion.h2 
+            className={styles.giftTitle}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
+            {gift.name}
+          </motion.h2>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.5 }}
+          >
+            <p className={styles.total}>Total: {gift.total_price}</p>
+            <p className={styles.total}>Restante: {gift.remaining_price}</p>
+          </motion.div>
+
+          <AnimatePresence mode="wait">
+            {!paymentConfirmed ? (
+              <motion.div
+                key="payment-form"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 50 }}
+                transition={{ duration: 0.4 }}
+              >
+                <motion.input
+                  type="text"
+                  placeholder="Seu nome"
+                  value={contributorName}
+                  onChange={e => setContributorName(e.target.value)}
+                  className={styles.input}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5, duration: 0.5 }}
+                />
+                <motion.input
+                  type="text"
+                  placeholder="Valor que quer contribuir"
+                  value={customAmount}
+                  onChange={e => handleAmountChange(e.target.value)}
+                  className={styles.input}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                />
+                <AnimatePresence>
+                  {error && (
+                    <motion.p 
+                      className={styles.error}
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {error}
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+                <motion.button
+                  onClick={handlePayment}
+                  disabled={!totalPrice || !!error || remainingPrice <= 0}
+                  className={styles.payButton}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Ir para o pagamento
+                </motion.button>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="payment-confirmed"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.4 }}
+              >
+                <motion.div 
+                  className={styles.qrSection}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
+                  <ReactQRCode value={pixPayload!} size={200} />
+                  <p>Escaneie o QR Code para pagar</p>
+                </motion.div>
+
+                <motion.div 
+                  className={styles.copySection}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  <label htmlFor="pixCode" className={styles.label}>Código Pix (copia e cola):</label>
+                  <textarea
+                    id="pixCode"
+                    readOnly
+                    value={pixPayload || ''}
+                    className={styles.textarea}
+                    rows={3}
+                  />
+                  <motion.button 
+                    onClick={handleCopyPixCode} 
+                    className={styles.copyButton} 
+                    aria-label="Copiar código Pix"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <AiOutlineCopy /> Copiar código
+                  </motion.button>
+                  <AnimatePresence>
+                    {copySuccess && (
+                      <motion.p 
+                        className={styles.copySuccess}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {copySuccess}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+
+                <motion.button 
+                  onClick={handlePaymentClick} 
+                  className={styles.confirmButton}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Já realizou o pagamento? Clique aqui.
+                </motion.button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <motion.div 
+            className={styles.contributors}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            <h3>Contribuições:</h3>
+            {loading ? (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9, duration: 0.5 }}
+              >
+                Carregando...
+              </motion.p>
+            ) : contributions.length === 0 ? (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9, duration: 0.5 }}
+              >
+                Nenhuma contribuição ainda.
+              </motion.p>
+            ) : (
+              <motion.ul
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.9, duration: 0.5 }}
+              >
+                {contributions.map((c, i) => (
+                  <motion.li 
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 1 + i * 0.1, duration: 0.3 }}
+                    whileHover={{ x: 5 }}
+                  >
+                    {new Date(c.created_at).toLocaleDateString('pt-BR')} - {c.user_name} - {c.amount}
+                  </motion.li>
+                ))}
+              </motion.ul>
+            )}
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   )
 }

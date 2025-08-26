@@ -1,10 +1,36 @@
+$primary-dark: #1c3b6c;
+$primary-medium: #486b92;
+$primary-light: #f8f8f8;
+$primary-gradient-start: #f0f6ff;
+$primary-gradient-mid: #e0e8ff;
+$accent-rose: #e91e63;
+$accent-pink: #f8bbd9;
+$text-dark: #2c1810;
+$text-light: #6d4c41;
+$card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
+$shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
+
 .header {
-  background: linear-gradient(135deg, #1c3b6c, #486b92);
+  background: linear-gradient(135deg, $primary-dark, $primary-medium);
   padding: 1.5rem 2rem;
-  border-bottom: 2px solid #14305a;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  font-family: 'Arial', sans-serif;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: $shadow-soft;
+  font-family: 'Inter', sans-serif;
   font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10 15c-2-3-4-6-6-8a6 6 0 0 1 0-8 6 6 0 0 1 8 0 6 6 0 0 1 8 0 6 6 0 0 1 0 8c-2 2-4 5-6 8z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+    opacity: 0.3;
+  }
 }
 
 .container {
@@ -15,13 +41,24 @@
   margin: 0 auto;
   flex-wrap: wrap;
   gap: 1rem;
+  position: relative;
+  z-index: 1;
 }
 
 .title {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 600;
-  color: #f8f8f8;
-  font-family: 'Cursive', sans-serif;
+  color: white;
+  font-family: 'Dancing Script', cursive;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::before {
+    content: '💕';
+    font-size: 1.5rem;
+  }
 }
 
 .buttonGroup {
@@ -31,86 +68,110 @@
 }
 
 .button {
-  background-color: #486b92;
-  color: #f8f8f8;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
   text-decoration: none;
-  font-weight: bold;
-  border: none;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
   cursor: pointer;
-  font-size: 1rem;
-  font-family: 'Arial', sans-serif;
-}
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
-.button:hover {
-  background-color: #1c3b6c;
+  &:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
 }
 
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 1rem;
   overflow-y: auto;
   z-index: 1000;
+  backdrop-filter: blur(5px);
 }
 
 .modal {
-  background: #f8f8f8;
-  padding: 1.5rem;
-  border-radius: 1rem;
+  background: $card-gradient;
+  padding: 2rem;
+  border-radius: 20px;
   width: 100%;
   max-width: 600px;
   position: relative;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: $shadow-hover;
   text-align: center;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
+  border: 1px solid rgba(28, 59, 108, 0.1);
 }
 
 .closeButton {
   position: absolute;
-  top: 0.8rem;
-  right: 1rem;
-  background: transparent;
+  top: 1rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, $primary-medium, $primary-dark);
   border: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   cursor: pointer;
-  color: #888;
+  color: white;
   z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(28, 59, 108, 0.3);
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(28, 59, 108, 0.4);
+  }
 }
 
 .modal h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.8rem;
-  color: #1c3b6c;
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: $primary-dark;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
 }
 
 .modal p {
-  margin: 0.8rem 0;
+  margin: 1rem 0;
   line-height: 1.6;
+  color: $text-light;
 }
 
 .whatsappButton {
   display: inline-block;
-  margin-top: 1rem;
-  background-color: #25d366;
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, #25d366, #1ebd59);
   color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 999px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
   font-size: 1rem;
-  transition: background-color 0.3s ease;
-}
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 
-.whatsappButton:hover {
-  background-color: #1ebd59;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+  }
 }
 
 .carousel {
@@ -118,7 +179,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1.5rem 0;
+  margin: 2rem 0;
   gap: 1rem;
   flex-wrap: nowrap;
 }
@@ -128,8 +189,9 @@
   width: 100%;
   height: 400px;
   overflow: hidden;
-  border-radius: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  box-shadow: $shadow-soft;
+  border: 2px solid rgba(28, 59, 108, 0.1);
 }
 
 .slider {
@@ -148,32 +210,40 @@
   object-fit: cover;
   width: 100% !important;
   height: 100% !important;
-  border-radius: 1rem;
+  border-radius: 16px;
 }
 
 .navButton {
-  background: none;
+  background: linear-gradient(135deg, $primary-medium, $primary-dark);
   border: none;
-  font-size: 1.5rem;
-  color: #486b92;
-  opacity: 0.5;
-  transition: opacity 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
-}
-
-.navButton:hover {
+  font-size: 1.2rem;
+  color: white;
   opacity: 0.8;
-  transform: scale(1.05);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(28, 59, 108, 0.3);
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(28, 59, 108, 0.4);
+  }
 }
 
 @media screen and (max-width: 480px) {
   .modal {
-    padding: 1rem;
-    font-size: 0.9rem;
+    padding: 1.5rem;
+    font-size: 0.95rem;
   }
 
   .modal h3 {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
   }
 
   .modal p {
@@ -182,40 +252,48 @@
 
   .whatsappButton {
     font-size: 0.9rem;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.2rem;
   }
 
   .sliderWrapper {
-    height: 220px;
+    height: 250px;
   }
 
   .closeButton {
-    font-size: 1.8rem;
-    top: 0.5rem;
-    right: 0.6rem;
+    font-size: 1.2rem;
+    top: 0.8rem;
+    right: 1rem;
+    width: 35px;
+    height: 35px;
   }
 
   .navButton {
-    font-size: 1.2rem;
+    font-size: 1rem;
+    width: 35px;
+    height: 35px;
+  }
+
+  .title {
+    font-size: 1.6rem;
   }
 }
 
 @media screen and (max-width: 360px) {
   .modal {
-    font-size: 0.85rem;
-    padding: 0.8rem;
+    font-size: 0.9rem;
+    padding: 1rem;
   }
 
   .modal h3 {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .whatsappButton {
     font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.5rem 1rem;
   }
 
   .sliderWrapper {
-    height: 180px;
+    height: 200px;
   }
 }

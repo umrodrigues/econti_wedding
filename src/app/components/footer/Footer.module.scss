@@ -1,18 +1,60 @@
+$primary-dark: #1c3b6c;
+$primary-medium: #486b92;
+$primary-light: #f8f8f8;
+$primary-gradient-start: #f0f6ff;
+$primary-gradient-mid: #e0e8ff;
+$accent-rose: #e91e63;
+$accent-pink: #f8bbd9;
+$text-dark: #2c1810;
+$text-light: #6d4c41;
+$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
+
 .footer {
-  background-color: #486b92;
+  background: linear-gradient(135deg, $primary-dark, $primary-medium);
   color: white;
   text-align: center;
-  padding: 1rem 0;
-  font-family: 'Arial', sans-serif;
-  font-size: 0.9rem;
+  padding: 1.5rem 0;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10 15c-2-3-4-6-6-8a6 6 0 0 1 0-8 6 6 0 0 1 8 0 6 6 0 0 1 8 0 6 6 0 0 1 0 8c-2 2-4 5-6 8z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+    opacity: 0.2;
+  }
+
+  p {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
 
   a {
-    color: #0055ff;
+    color: #ffe082;
     text-decoration: none;
     font-weight: 600;
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
 
     &:hover {
-      text-decoration: underline;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(255, 224, 130, 0.3);
     }
   }
 }

@@ -1,24 +1,75 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import GiftItem, { GiftItemProps } from '../gift-item/GiftItem'
 import Modal from '../modal/Modal'
 import styles from './Content.module.scss'
 import Header from '../header/Header'
-import { FaRegLightbulb } from 'react-icons/fa'
+import { FaRegLightbulb, FaHeart } from 'react-icons/fa'
 import Footer from '../footer/Footer'
+
+function LoadingSpinner() {
+  return (
+    <motion.div 
+      className={styles.loadingContainer}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
+      <motion.div 
+        className={styles.loadingSpinner}
+        animate={{ 
+          rotate: 360,
+          scale: [1, 1.1, 1]
+        }}
+        transition={{ 
+          rotate: { duration: 2, repeat: Infinity, ease: "linear" },
+          scale: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+        }}
+      >
+        <FaHeart className={styles.heartIcon} />
+      </motion.div>
+      <motion.p 
+        className={styles.loadingText}
+        animate={{ opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      >
+        Carregando presentes com amor...
+      </motion.p>
+    </motion.div>
+  )
+}
 
 function ShimmerGrid() {
   return (
-    <div className={styles.shimmerGrid}>
+    <motion.div 
+      className={styles.shimmerGrid}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+    >
       {Array(8).fill(0).map((_, i) => (
-        <div key={i} className={styles.shimmerCard}></div>
+        <motion.div 
+          key={i} 
+          className={styles.shimmerCard}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.1, duration: 0.5 }}
+        />
       ))}
-    </div>
+    </motion.div>
   )
 }
 
 function ShimmerFooter() {
-  return <div className={styles.shimmerFooter}></div>
+  return (
+    <motion.div 
+      className={styles.shimmerFooter}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+    />
+  )
 }
 
 export default function Content() {
@@ -48,24 +99,72 @@ export default function Content() {
   return (
     <>
       <Header />
-      <div className={styles.floatingInfo}>
+      <motion.div 
+        className={styles.floatingInfo}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ delay: 1, duration: 0.6 }}
+      >
         <FaRegLightbulb className={styles.icon} />
         Os valores exibidos são sugestões, contribua com o valor que desejar!
-      </div>
+      </motion.div>
       <main className={styles.main}>
-        <h1>Lista de Presentes</h1>
-        {loading ? (
-          <ShimmerGrid />
-        ) : (
-          <div className={styles.grid}>
-            {gifts.map((gift) => (
-              <GiftItem key={gift.id} gift={gift} onShowModal={onShowModal} />
-            ))}
-          </div>
-        )}
+        <motion.h1 
+          className={styles.title}
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Lista de Presentes
+        </motion.h1>
+        <AnimatePresence mode="wait">
+          {loading ? (
+            <LoadingSpinner key="loading" />
+          ) : (
+            <motion.div 
+              className={styles.grid}
+              key="grid"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              {gifts.map((gift, index) => (
+                <motion.div
+                  key={gift.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <GiftItem gift={gift} onShowModal={onShowModal} />
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
-      {loading ? <ShimmerFooter /> : <Footer />}
-      {showModal && gift && <Modal gift={gift} closeModal={closeModal} />}
+      <AnimatePresence mode="wait">
+        {loading ? (
+          <ShimmerFooter key="shimmer-footer" />
+        ) : (
+          <motion.div
+            key="footer"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Footer />
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <AnimatePresence>
+        {showModal && gift && (
+          <Modal gift={gift} closeModal={closeModal} />
+        )}
+      </AnimatePresence>
     </>
   )
 }

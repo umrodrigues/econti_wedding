@@ -1,28 +1,53 @@
 $primary-dark: #1c3b6c;
 $primary-medium: #486b92;
 $primary-light: #f8f8f8;
+$primary-gradient-start: #f0f6ff;
+$primary-gradient-mid: #e0e8ff;
+$accent-rose: #e91e63;
+$accent-pink: #f8bbd9;
+$text-dark: #2c1810;
+$text-light: #6d4c41;
+$card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
+$shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: $primary-light;
+  background: $card-gradient;
   padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(28, 59, 108, 0.15);
+  border-radius: 16px;
+  box-shadow: $shadow-soft;
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
   height: 100%;
+  border: 1px solid rgba(28, 59, 108, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $primary-medium, $accent-rose, $primary-medium);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
 
   h2 {
     margin: 0.5rem 0;
-    color: $primary-dark;
+    color: $text-dark;
     font-size: 1.1rem;
+    font-weight: 600;
   }
 
   p {
     font-size: 0.95rem;
-    color: $primary-medium;
+    color: $text-light;
     margin: 0.5rem 0;
     flex-grow: 1;
   }
@@ -31,13 +56,14 @@ $primary-light: #f8f8f8;
     display: block;
     margin: 0.5rem 0;
     font-weight: bold;
-    color: #333;
+    color: $primary-dark;
+    font-size: 1.1rem;
   }
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(28, 59, 108, 0.3);
+  transform: translateY(-8px);
+  box-shadow: $shadow-hover;
 }
 
 .imageWrapper {
@@ -47,6 +73,7 @@ $primary-light: #f8f8f8;
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .picker {
@@ -57,38 +84,53 @@ $primary-light: #f8f8f8;
   gap: 0.5rem;
 
   button {
-    background-color: $primary-medium;
+    background: linear-gradient(135deg, $primary-medium, $primary-dark);
     color: white;
     border: none;
     padding: 0.5rem 0.8rem;
     border-radius: 8px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(28, 59, 108, 0.3);
 
-  button:hover {
-    background-color: $primary-dark;
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(28, 59, 108, 0.4);
+    }
   }
 
   span {
     font-weight: bold;
     min-width: 24px;
     text-align: center;
+    color: $primary-dark;
   }
 }
 
 .confirmBtn {
-  background-color: $primary-dark;
+  background: linear-gradient(135deg, $primary-dark, $primary-medium);
   color: white;
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
   cursor: pointer;
   margin-top: 0.5rem;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(28, 59, 108, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(28, 59, 108, 0.4);
+  }
 }
 
-.confirmBtn:hover {
-  background-color: $primary-medium;
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }

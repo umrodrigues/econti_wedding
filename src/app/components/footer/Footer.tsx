@@ -7,7 +7,7 @@ export default function Footer() {
       <p>
         Desenvolvido por{' '}
         <a href="https://www.lunaristech.com.br" target="_blank" rel="noopener noreferrer">
-          LunaristTech
+          Lunaris Tech
         </a>
       </p>
     </footer>

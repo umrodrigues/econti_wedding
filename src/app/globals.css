@@ -1,9 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-dark: #1c3b6c;
+  --primary-medium: #486b92;
+  --primary-light: #f8f8f8;
+  --primary-gradient-start: #f0f6ff;
+  --primary-gradient-mid: #e0e8ff;
+  --accent-rose: #e91e63;
+  --accent-pink: #f8bbd9;
+  --text-dark: #2c1810;
+  --text-light: #6d4c41;
+  --background-gradient: linear-gradient(135deg, #f0f6ff 0%, #e0e8ff 50%, #f8f8f8 100%);
+  --card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
+  --shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
+  --shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
+}
+
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-dark);
+  background: var(--background-gradient);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  line-height: 1.6;
 }
 
 * {
@@ -17,8 +37,4 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    /* color-scheme: dark; */
-  }
-}
+
