@@ -26,9 +26,23 @@ type Contribution = {
 }
 
 function parseCurrencyToNumber(value: string): number {
-  const cleaned = value.replace(/[^\d,.-]/g, '').replace(',', '.')
+  if (!value || typeof value !== 'string') return 0
+  
+  let cleaned = value.replace(/[^\d,.-]/g, '')
+  
+  if (cleaned.includes(',')) {
+    const parts = cleaned.split(',')
+    if (parts.length === 2 && parts[1].length <= 2) {
+      cleaned = parts[0] + '.' + parts[1]
+    } else {
+      cleaned = cleaned.replace(/,/g, '')
+    }
+  }
+  
   const parsed = parseFloat(cleaned)
-  return isNaN(parsed) ? 0 : parsed
+  
+  if (isNaN(parsed) || parsed < 0) return 0
+  return parsed
 }
 
 function cleanText(text: string): string {
@@ -66,14 +80,24 @@ export default function Modal({ gift, closeModal }: ModalProps) {
 
   const handleAmountChange = (value: string) => {
     setCustomAmount(value)
+    
+    if (!value.trim()) {
+      setError('')
+      return
+    }
+    
     const valid = /^[0-9]*[.,]?[0-9]{0,2}$/.test(value)
     if (!valid) {
       setError('Formato inválido')
       return
     }
+    
     const parsed = parseCurrencyToNumber(value)
-    if (parsed > remainingPrice) {
-      setError('Valor maior que o restante')
+    
+    if (parsed <= 0) {
+      setError('Valor deve ser maior que zero')
+    } else if (parsed > remainingPrice) {
+      setError(`Valor máximo permitido: R$ ${remainingPrice.toFixed(2)}`)
     } else {
       setError('')
     }
@@ -110,8 +134,12 @@ export default function Modal({ gift, closeModal }: ModalProps) {
       setError('Informe seu nome')
       return
     }
-    if (totalPrice <= 0 || totalPrice > remainingPrice) {
-      setError('Informe um valor válido')
+    if (totalPrice <= 0) {
+      setError('Informe um valor maior que zero')
+      return
+    }
+    if (totalPrice > remainingPrice) {
+      setError(`Valor máximo permitido: R$ ${remainingPrice.toFixed(2)}`)
       return
     }
     try {
