@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import GiftItem, { GiftItemProps } from '../gift-item/GiftItem'
 import Modal from '../modal/Modal'
+import Timeline from '../timeline/Timeline'
 import styles from './Content.module.scss'
 import Header from '../header/Header'
 import { FaRegLightbulb, FaHeart } from 'react-icons/fa'
@@ -77,6 +78,11 @@ export default function Content() {
   const [gift, setGift] = useState<GiftItemProps | null>(null)
   const [gifts, setGifts] = useState<GiftItemProps[]>([])
   const [loading, setLoading] = useState(true)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const fetchGifts = async () => {
@@ -96,6 +102,46 @@ export default function Content() {
 
   const closeModal = () => setShowModal(false)
 
+  if (!isMounted) {
+    return (
+      <>
+        <Header />
+        <div className={styles.floatingInfo}>
+          <FaRegLightbulb className={styles.icon} />
+          Os valores exibidos são sugestões, contribua com o valor que desejar!
+        </div>
+        
+        <Timeline />
+        
+        <main className={styles.main}>
+          <h1 className={styles.title}>
+            Lista de Presentes
+          </h1>
+          {loading ? (
+            <div className={styles.loadingContainer}>
+              <div className={styles.loadingSpinner}>
+                <FaHeart className={styles.heartIcon} />
+              </div>
+              <p className={styles.loadingText}>
+                Carregando presentes com amor...
+              </p>
+            </div>
+          ) : (
+            <div className={styles.grid}>
+              {gifts.map((gift) => (
+                <div key={gift.id}>
+                  <GiftItem gift={gift} onShowModal={onShowModal} />
+                </div>
+              ))}
+            </div>
+          )}
+        </main>
+        {loading ? <div className={styles.shimmerFooter} /> : <Footer />}
+        {showModal && gift && <Modal gift={gift} closeModal={closeModal} />}
+      </>
+    )
+  }
+
   return (
     <>
       <Header />
@@ -108,6 +154,9 @@ export default function Content() {
         <FaRegLightbulb className={styles.icon} />
         Os valores exibidos são sugestões, contribua com o valor que desejar!
       </motion.div>
+      
+      <Timeline />
+      
       <main className={styles.main}>
         <motion.h1 
           className={styles.title}

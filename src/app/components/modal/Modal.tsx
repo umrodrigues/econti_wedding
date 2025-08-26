@@ -206,12 +206,13 @@ export default function Modal({ gift, closeModal }: ModalProps) {
           </motion.h2>
           
           <motion.div
+            className={styles.total}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            <p className={styles.total}>Total: {gift.total_price}</p>
-            <p className={styles.total}>Restante: {gift.remaining_price}</p>
+            <span>Total: {gift.total_price}</span>
+            <span>Restante: {gift.remaining_price}</span>
           </motion.div>
 
           <AnimatePresence mode="wait">
@@ -299,7 +300,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
                     readOnly
                     value={pixPayload || ''}
                     className={styles.textarea}
-                    rows={3}
+                    rows={4}
                   />
                   <motion.button 
                     onClick={handleCopyPixCode} 
@@ -377,7 +378,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
                     transition={{ delay: 1 + i * 0.1, duration: 0.3 }}
                     whileHover={{ x: 5 }}
                   >
-                    {new Date(c.created_at).toLocaleDateString('pt-BR')} - {c.user_name} - {c.amount}
+                    {new Date(c.created_at).toLocaleDateString('pt-BR')} - {c.user_name} - R$ {c.amount.toFixed(2)}
                   </motion.li>
                 ))}
               </motion.ul>
