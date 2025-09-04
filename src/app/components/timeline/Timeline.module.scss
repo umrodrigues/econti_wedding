@@ -11,7 +11,7 @@ $shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
 $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .timelineSection {
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
   background: linear-gradient(135deg, $primary-gradient-start 0%, $primary-gradient-mid 50%, $primary-light 100%);
   position: relative;
   overflow: hidden;
@@ -23,8 +23,8 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M15 20c-3-4-6-8-9-12a8 8 0 0 1 0-10 8 8 0 0 1 10 0 8 8 0 0 1 10 0 8 8 0 0 1 0 10c-3 4-6 8-9 12z" fill="rgba(233,30,99,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
-    opacity: 0.5;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M15 20c-3-4-6-8-9-12a8 8 0 0 1 0-10 8 8 0 0 1 10 0 8 8 0 0 1 10 0 8 8 0 0 1 0 10c-3 4-6 8-9 12z" fill="rgba(233,30,99,0.02)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+    opacity: 0.3;
   }
 }
 
@@ -38,10 +38,10 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .sectionTitle {
   text-align: center;
   font-family: 'Dancing Script', cursive;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 600;
   color: $primary-dark;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   background: linear-gradient(135deg, $primary-dark, $primary-medium);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -49,14 +49,14 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   text-shadow: 0 2px 4px rgba(28, 59, 108, 0.1);
 
   @media (max-width: 768px) {
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 2.2rem;
+    margin-bottom: 2.5rem;
   }
 }
 
 .timeline {
   position: relative;
-  padding: 2rem 0;
+  padding: 1.5rem 0;
 
   &::before {
     content: '';
@@ -64,14 +64,14 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     left: 50%;
     top: 0;
     bottom: 0;
-    width: 4px;
+    width: 3px;
     background: linear-gradient(180deg, $primary-medium, $accent-rose, $primary-medium);
     transform: translateX(-50%);
     border-radius: 2px;
-    box-shadow: 0 0 20px rgba(233, 30, 99, 0.3);
+    box-shadow: 0 0 15px rgba(233, 30, 99, 0.2);
 
     @media (max-width: 768px) {
-      left: 2rem;
+      left: 1.5rem;
       transform: none;
     }
   }
@@ -79,7 +79,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .timelineItem {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 2.5rem;
   width: 100%;
 
   &:last-child {
@@ -90,14 +90,14 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .timelineItem.left {
   .timelineContent {
     margin-right: 50%;
-    padding-right: 3rem;
+    padding-right: 2rem;
     text-align: right;
 
     @media (max-width: 768px) {
       margin-right: 0;
-      margin-left: 4rem;
+      margin-left: 3rem;
       padding-right: 0;
-      padding-left: 2rem;
+      padding-left: 1.5rem;
       text-align: left;
     }
   }
@@ -107,7 +107,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     transform: translateX(-50%);
 
     @media (max-width: 768px) {
-      left: 2rem;
+      left: 1.5rem;
       transform: none;
     }
   }
@@ -116,13 +116,13 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .timelineItem.right {
   .timelineContent {
     margin-left: 50%;
-    padding-left: 3rem;
+    padding-left: 2rem;
     text-align: left;
 
     @media (max-width: 768px) {
       margin-left: 0;
-      margin-left: 4rem;
-      padding-left: 2rem;
+      margin-left: 3rem;
+      padding-left: 1.5rem;
       text-align: left;
     }
   }
@@ -132,34 +132,41 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     transform: translateX(-50%);
 
     @media (max-width: 768px) {
-      left: 2rem;
+      left: 1.5rem;
       transform: none;
     }
   }
 }
 
 .timelineContent {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(240, 246, 255, 0.8));
-  border-radius: 20px;
-  padding: 2rem;
-  box-shadow: $shadow-soft;
-  border: 2px solid rgba(28, 59, 108, 0.1);
-  backdrop-filter: blur(10px);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(240, 246, 255, 0.7));
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(28, 59, 108, 0.08);
+  border: 1px solid rgba(28, 59, 108, 0.08);
+  backdrop-filter: blur(8px);
   transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: $shadow-hover;
-    border-color: rgba(233, 30, 99, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(28, 59, 108, 0.12);
+    border-color: rgba(233, 30, 99, 0.15);
   }
 }
 
 .imageContainer {
   position: relative;
-  border-radius: 16px;
+  border-radius: 12px;
   overflow: hidden;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 768px) {
+    max-width: 150px;
+  }
 }
 
 .timelineImage {
@@ -171,48 +178,48 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .imageOverlay {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   background: linear-gradient(135deg, $primary-medium, $primary-dark);
   color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
   font-weight: 600;
-  font-size: 0.9rem;
-  box-shadow: 0 2px 8px rgba(28, 59, 108, 0.3);
+  font-size: 0.8rem;
+  box-shadow: 0 2px 6px rgba(28, 59, 108, 0.25);
 }
 
 .content {
   .title {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: $primary-dark;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     background: linear-gradient(135deg, $primary-dark, $primary-medium);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
     @media (max-width: 768px) {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
     }
   }
 
   .description {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: $text-light;
-    line-height: 1.6;
+    line-height: 1.5;
     margin: 0;
   }
 }
 
 .timelineDot {
   position: absolute;
-  top: 2rem;
-  width: 20px;
-  height: 20px;
+  top: 1.5rem;
+  width: 16px;
+  height: 16px;
   z-index: 2;
 
   .dot {
@@ -220,7 +227,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     height: 100%;
     background: linear-gradient(135deg, $primary-medium, $accent-rose);
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(233, 30, 99, 0.5);
+    box-shadow: 0 0 15px rgba(233, 30, 99, 0.4);
     position: relative;
 
     &::before {
@@ -229,8 +236,8 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       background: white;
       border-radius: 50%;
     }
@@ -241,9 +248,9 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 30px;
-      height: 30px;
-      border: 2px solid rgba(233, 30, 99, 0.3);
+      width: 24px;
+      height: 24px;
+      border: 2px solid rgba(233, 30, 99, 0.25);
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
@@ -252,39 +259,39 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .finalMessage {
   text-align: center;
-  margin-top: 4rem;
-  padding: 3rem;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(240, 246, 255, 0.8));
-  border-radius: 24px;
-  box-shadow: $shadow-soft;
-  border: 2px solid rgba(28, 59, 108, 0.1);
-  backdrop-filter: blur(10px);
+  margin-top: 3rem;
+  padding: 2rem;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.85), rgba(240, 246, 255, 0.7));
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(28, 59, 108, 0.08);
+  border: 1px solid rgba(28, 59, 108, 0.08);
+  backdrop-filter: blur(8px);
 
   h3 {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: 600;
     color: $primary-dark;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     background: linear-gradient(135deg, $primary-dark, $accent-rose);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 
     @media (max-width: 768px) {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
   }
 
   p {
     font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: $text-light;
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.5;
 
     @media (max-width: 768px) {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
   }
 }
@@ -302,7 +309,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 @media (max-width: 768px) {
   .timelineSection {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
   }
 
   .timeline {
@@ -310,13 +317,13 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   }
 
   .timelineContent {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .imageOverlay {
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
   }
 }

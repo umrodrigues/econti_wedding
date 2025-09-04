@@ -7,6 +7,7 @@ import { AiOutlineClose, AiOutlineCopy } from 'react-icons/ai'
 import styles from './Modal.module.scss'
 import Image from 'next/image'
 import { createStaticPix } from 'pix-utils'
+import { formatCurrency, parseCurrencyToNumber, applyCurrencyMask } from '../../utils/currency'
 
 type ModalProps = {
   gift: {
@@ -23,26 +24,6 @@ type Contribution = {
   user_name: string
   amount: number
   created_at: string
-}
-
-function parseCurrencyToNumber(value: string): number {
-  if (!value || typeof value !== 'string') return 0
-  
-  let cleaned = value.replace(/[^\d,.-]/g, '')
-  
-  if (cleaned.includes(',')) {
-    const parts = cleaned.split(',')
-    if (parts.length === 2 && parts[1].length <= 2) {
-      cleaned = parts[0] + '.' + parts[1]
-    } else {
-      cleaned = cleaned.replace(/,/g, '')
-    }
-  }
-  
-  const parsed = parseFloat(cleaned)
-  
-  if (isNaN(parsed) || parsed < 0) return 0
-  return parsed
 }
 
 function cleanText(text: string): string {
@@ -79,25 +60,20 @@ export default function Modal({ gift, closeModal }: ModalProps) {
   }, [gift.id])
 
   const handleAmountChange = (value: string) => {
-    setCustomAmount(value)
+    const maskedValue = applyCurrencyMask(value)
+    setCustomAmount(maskedValue)
     
     if (!value.trim()) {
       setError('')
       return
     }
     
-    const valid = /^[0-9]*[.,]?[0-9]{0,2}$/.test(value)
-    if (!valid) {
-      setError('Formato inválido')
-      return
-    }
-    
-    const parsed = parseCurrencyToNumber(value)
+    const parsed = parseCurrencyToNumber(maskedValue)
     
     if (parsed <= 0) {
       setError('Valor deve ser maior que zero')
     } else if (parsed > remainingPrice) {
-      setError(`Valor máximo permitido: R$ ${remainingPrice.toFixed(2)}`)
+      setError(`Valor máximo permitido: ${formatCurrency(remainingPrice)}`)
     } else {
       setError('')
     }
@@ -139,7 +115,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
       return
     }
     if (totalPrice > remainingPrice) {
-      setError(`Valor máximo permitido: R$ ${remainingPrice.toFixed(2)}`)
+      setError(`Valor máximo permitido: ${formatCurrency(remainingPrice)}`)
       return
     }
     try {
@@ -171,6 +147,16 @@ export default function Modal({ gift, closeModal }: ModalProps) {
         body: JSON.stringify({ user_name: contributorName, amount: totalPrice }),
       })
       if (res.ok) {
+        await fetch('/api/send-payment-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            contributorName, 
+            productName: gift.name, 
+            amount: totalPrice.toFixed(2) 
+          }),
+        })
+        
         setContributions(prev => [...prev, { user_name: contributorName, amount: totalPrice, created_at: new Date().toISOString() }])
         setContributorName('')
         setCustomAmount('')
@@ -239,8 +225,8 @@ export default function Modal({ gift, closeModal }: ModalProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
           >
-            <span>Total: {gift.total_price}</span>
-            <span>Restante: {gift.remaining_price}</span>
+            <span>Total: {formatCurrency(gift.total_price)}</span>
+            <span>Restante: {formatCurrency(gift.remaining_price)}</span>
           </motion.div>
 
           <AnimatePresence mode="wait">
@@ -264,7 +250,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
                 />
                 <motion.input
                   type="text"
-                  placeholder="Valor que quer contribuir"
+                  placeholder="R$ 0,00"
                   value={customAmount}
                   onChange={e => handleAmountChange(e.target.value)}
                   className={styles.input}
@@ -406,7 +392,7 @@ export default function Modal({ gift, closeModal }: ModalProps) {
                     transition={{ delay: 1 + i * 0.1, duration: 0.3 }}
                     whileHover={{ x: 5 }}
                   >
-                    {new Date(c.created_at).toLocaleDateString('pt-BR')} - {c.user_name} - R$ {c.amount.toFixed(2)}
+                    {new Date(c.created_at).toLocaleDateString('pt-BR')} - {c.user_name} - {formatCurrency(c.amount)}
                   </motion.li>
                 ))}
               </motion.ul>

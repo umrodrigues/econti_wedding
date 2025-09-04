@@ -75,8 +75,8 @@ export default function Timeline() {
                     <Image
                       src={item.image}
                       alt={item.title}
-                      width={300}
-                      height={200}
+                      width={200}
+                      height={150}
                       className={styles.timelineImage}
                     />
                     <div className={styles.imageOverlay}>

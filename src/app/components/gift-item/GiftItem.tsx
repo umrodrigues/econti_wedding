@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import styles from './GiftItem.module.scss'
+import { formatCurrency } from '../../utils/currency'
 
 export type GiftItemProps = {
   id: number
@@ -25,8 +26,8 @@ export default function GiftItem({ gift, onShowModal }: { gift: GiftItemProps, o
         />
       </div>
       <h2>{gift.name}</h2>
-      <span>{gift.total_price}</span>
-      <p>Valor restante: {gift.remaining_price}</p>
+      <span>{formatCurrency(gift.total_price)}</span>
+      <p>Valor restante: {formatCurrency(gift.remaining_price)}</p>
       <button className={styles.confirmBtn} onClick={confirm}>Quero apoiar este casal</button>
     </div>
   )
