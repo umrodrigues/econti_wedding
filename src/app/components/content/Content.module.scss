@@ -1,15 +1,16 @@
-$primary-dark: #1c3b6c;
-$primary-medium: #486b92;
-$primary-light: #f8f8f8;
-$primary-gradient-start: #f0f6ff;
-$primary-gradient-mid: #e0e8ff;
-$accent-rose: #e91e63;
-$accent-pink: #f8bbd9;
-$text-dark: #2c1810;
-$text-light: #6d4c41;
-$card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
-$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
-$shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
+$blue-light: #B8D4E3;
+$blue-medium: #7BA7BC;
+$blue-dark: #4A7C95;
+$blue-deep: #2C5F7A;
+$background-textured: #FAFAFA;
+$background-paper: #F5F5F5;
+$text-primary: #1A3A4A;
+$text-secondary: #4A5C6B;
+$text-light: #6B7B8C;
+$white: #FFFFFF;
+$shadow-soft: 0 4px 20px rgba(44, 95, 122, 0.08);
+$shadow-medium: 0 8px 30px rgba(44, 95, 122, 0.12);
+$shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
 
 .loadingContainer {
   display: flex;
@@ -31,8 +32,8 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .heartIcon {
   font-size: 3rem;
-  color: $accent-rose;
-  filter: drop-shadow(0 4px 8px rgba(233, 30, 99, 0.3));
+  color: $blue-medium;
+  filter: drop-shadow(0 4px 8px rgba(123, 167, 188, 0.3));
 }
 
 .loadingText {
@@ -64,9 +65,9 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   border-radius: 16px;
   background: linear-gradient(
     90deg,
-    $primary-gradient-start 25%,
-    $primary-gradient-mid 37%,
-    $primary-gradient-start 63%
+    $background-textured 25%,
+    $background-paper 37%,
+    $background-textured 63%
   );
   background-size: 400% 100%;
   animation: shimmer 1.5s infinite;
@@ -80,9 +81,9 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   border-radius: 16px 16px 0 0;
   background: linear-gradient(
     90deg,
-    $primary-gradient-start 25%,
-    $primary-gradient-mid 37%,
-    $primary-gradient-start 63%
+    $background-textured 25%,
+    $background-paper 37%,
+    $background-textured 63%
   );
   background-size: 400% 100%;
   animation: shimmer 1.5s infinite;
@@ -105,16 +106,17 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .title {
   text-align: center;
-  color: $primary-medium;
+  color: $text-primary;
   margin-bottom: 1rem;
   font-family: 'Dancing Script', cursive;
-  font-size: 3.5rem;
+  font-size: 4.2rem;
   font-weight: 600;
-  text-shadow: 2px 2px 4px rgba(28, 59, 108, 0.1);
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  text-shadow: 0 3px 10px rgba(26, 58, 74, 0.2);
+  background: linear-gradient(135deg, $blue-deep, $blue-dark);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  letter-spacing: 1px;
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
@@ -123,15 +125,18 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .subtitleInfo {
   text-align: center;
-  color: $text-light;
-  font-size: 0.95rem;
-  margin-bottom: 2.5rem;
+  color: $text-primary;
+  font-size: 1rem;
+  margin-bottom: 3rem;
   font-style: italic;
-  opacity: 0.8;
+  opacity: 0.9;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.3px;
+  font-weight: 500;
 
   @media (max-width: 768px) {
-    font-size: 0.85rem;
-    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -156,16 +161,17 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: $card-gradient;
-  padding: 1.5rem;
-  border-radius: 16px;
+  background: linear-gradient(145deg, $white, $background-textured);
+  padding: 2rem;
+  border-radius: 20px;
   box-shadow: $shadow-soft;
   text-align: center;
   transition: all 0.3s ease;
   height: 100%;
-  border: 1px solid rgba(28, 59, 108, 0.1);
+  border: 1px solid rgba(184, 212, 227, 0.2);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 
   &::before {
     content: '';
@@ -174,14 +180,14 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, $primary-medium, $accent-rose, $primary-medium);
+    background: linear-gradient(90deg, $blue-medium, $blue-light, $blue-medium);
     background-size: 200% 100%;
     animation: shimmer 2s infinite;
   }
 
   h2 {
     margin: 0.5rem 0;
-    color: $text-dark;
+    color: $text-primary;
     font-size: 1.1rem;
     font-weight: 600;
   }
@@ -197,14 +203,15 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     display: block;
     margin: 0.5rem 0;
     font-weight: bold;
-    color: $primary-dark;
+    color: $text-primary;
     font-size: 1.1rem;
   }
 }
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: $shadow-hover;
+  box-shadow: $shadow-strong;
+  border-color: rgba(184, 212, 227, 0.4);
 }
 
 .imageWrapper {
@@ -225,7 +232,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   gap: 0.5rem;
 
   button {
-    background: linear-gradient(135deg, $primary-medium, $primary-dark);
+    background: linear-gradient(135deg, $blue-medium, $blue-dark);
     color: white;
     border: none;
     padding: 0.5rem 0.8rem;
@@ -245,12 +252,12 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     font-weight: bold;
     min-width: 24px;
     text-align: center;
-    color: $primary-dark;
+    color: $text-primary;
   }
 }
 
 .confirmBtn {
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  background: linear-gradient(135deg, $blue-dark, $blue-medium);
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -274,17 +281,18 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, $primary-medium, $primary-dark);
-  color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 20px;
-  box-shadow: $shadow-hover;
+  background: linear-gradient(135deg, $blue-deep, $blue-dark);
+  color: $white;
+  padding: 1.2rem 1.8rem;
+  border-radius: 25px;
+  box-shadow: $shadow-strong;
   font-size: 0.95rem;
-  max-width: 340px;
-  z-index: 999;
+  max-width: 360px;
   font-weight: 500;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(184, 212, 227, 0.3);
 
   @media (max-width: 600px) {
     left: 1rem;

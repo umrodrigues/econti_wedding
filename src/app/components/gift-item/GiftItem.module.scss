@@ -1,30 +1,32 @@
-$primary-dark: #1c3b6c;
-$primary-medium: #486b92;
-$primary-light: #f8f8f8;
-$primary-gradient-start: #f0f6ff;
-$primary-gradient-mid: #e0e8ff;
-$accent-rose: #e91e63;
-$accent-pink: #f8bbd9;
-$text-dark: #2c1810;
-$text-light: #6d4c41;
-$card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
-$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
-$shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
+$blue-light: #B8D4E3;
+$blue-medium: #7BA7BC;
+$blue-dark: #4A7C95;
+$blue-deep: #2C5F7A;
+$background-textured: #FAFAFA;
+$background-paper: #F5F5F5;
+$text-primary: #1A3A4A;
+$text-secondary: #4A5C6B;
+$text-light: #6B7B8C;
+$white: #FFFFFF;
+$shadow-soft: 0 4px 20px rgba(44, 95, 122, 0.08);
+$shadow-medium: 0 8px 30px rgba(44, 95, 122, 0.12);
+$shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: $card-gradient;
-  padding: 1.5rem;
-  border-radius: 16px;
+  background: linear-gradient(145deg, $white, $background-textured);
+  padding: 2rem;
+  border-radius: 20px;
   box-shadow: $shadow-soft;
   text-align: center;
   transition: all 0.3s ease;
   height: 100%;
-  border: 1px solid rgba(28, 59, 108, 0.1);
+  border: 1px solid rgba(184, 212, 227, 0.2);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
 
   &::before {
     content: '';
@@ -33,37 +35,38 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, $primary-medium, $accent-rose, $primary-medium);
+    background: linear-gradient(90deg, $blue-medium, $blue-light, $blue-medium);
     background-size: 200% 100%;
     animation: shimmer 2s infinite;
   }
 
   h2 {
     margin: 0.5rem 0;
-    color: $text-dark;
+    color: $text-primary;
     font-size: 1.1rem;
     font-weight: 600;
   }
 
   p {
     font-size: 0.95rem;
-    color: $text-light;
+    color: $text-secondary;
     margin: 0.5rem 0;
     flex-grow: 1;
+    font-weight: 500;
   }
 
   span {
     display: block;
     margin: 0.5rem 0;
     font-weight: bold;
-    color: $primary-dark;
+    color: $text-primary;
     font-size: 1.1rem;
   }
 }
 
 .card:hover {
   transform: translateY(-8px);
-  box-shadow: $shadow-hover;
+  box-shadow: $shadow-strong;
 }
 
 .imageWrapper {
@@ -84,7 +87,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   gap: 0.5rem;
 
   button {
-    background: linear-gradient(135deg, $primary-medium, $primary-dark);
+    background: linear-gradient(135deg, $blue-medium, $blue-dark);
     color: white;
     border: none;
     padding: 0.5rem 0.8rem;
@@ -104,25 +107,28 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     font-weight: bold;
     min-width: 24px;
     text-align: center;
-    color: $primary-dark;
+    color: $text-primary;
   }
 }
 
 .confirmBtn {
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
-  color: white;
+  background: linear-gradient(135deg, $blue-deep, $blue-dark);
+  color: $white;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
+  padding: 0.8rem 1.8rem;
+  border-radius: 25px;
   cursor: pointer;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   font-weight: 600;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(28, 59, 108, 0.3);
+  transition: all 0.3s ease;
+  box-shadow: $shadow-strong;
+  font-family: 'Inter', sans-serif;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(28, 59, 108, 0.4);
+    transform: translateY(-3px);
+    box-shadow: $shadow-strong;
+    background: linear-gradient(135deg, $blue-deep, $blue-dark);
   }
 }
 

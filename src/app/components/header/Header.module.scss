@@ -1,36 +1,26 @@
-$primary-dark: #1c3b6c;
-$primary-medium: #486b92;
-$primary-light: #f8f8f8;
-$primary-gradient-start: #f0f6ff;
-$primary-gradient-mid: #e0e8ff;
-$accent-rose: #e91e63;
-$accent-pink: #f8bbd9;
-$text-dark: #2c1810;
-$text-light: #6d4c41;
-$card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
-$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
-$shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
+$blue-light: #B8D4E3;
+$blue-medium: #7BA7BC;
+$blue-dark: #4A7C95;
+$blue-deep: #2C5F7A;
+$background-textured: #FAFAFA;
+$background-paper: #F5F5F5;
+$text-primary: #1A3A4A;
+$text-secondary: #4A5C6B;
+$text-light: #6B7B8C;
+$white: #FFFFFF;
+$shadow-soft: 0 4px 20px rgba(44, 95, 122, 0.08);
+$shadow-medium: 0 8px 30px rgba(44, 95, 122, 0.12);
+$shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
 
 .header {
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  background: linear-gradient(135deg, $white 0%, $background-paper 100%);
   padding: 1.5rem 2rem;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  box-shadow: $shadow-soft;
+  border-bottom: 1px solid rgba(184, 212, 227, 0.2);
+  box-shadow: 0 2px 20px rgba(44, 95, 122, 0.05);
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10 15c-2-3-4-6-6-8a6 6 0 0 1 0-8 6 6 0 0 1 8 0 6 6 0 0 1 8 0 6 6 0 0 1 0 8c-2 2-4 5-6 8z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
-    opacity: 0.3;
-  }
+  backdrop-filter: blur(10px);
 }
 
 .container {
@@ -46,18 +36,33 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.8rem;
   font-weight: 600;
-  color: white;
+  color: $text-primary;
   font-family: 'Dancing Script', cursive;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 2px 8px rgba(26, 58, 74, 0.1);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  letter-spacing: 1px;
+  position: relative;
 
   &::before {
     content: '💕';
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    margin-right: 0.3rem;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, $blue-light, $blue-medium, $blue-light);
+    border-radius: 1px;
+    opacity: 0.6;
   }
 }
 
@@ -68,24 +73,24 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 }
 
 .button {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-  color: white;
-  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, $blue-light, $blue-medium);
+  color: $white;
+  padding: 0.7rem 1.5rem;
   border-radius: 25px;
   text-decoration: none;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+  border: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-family: 'Inter', sans-serif;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: $shadow-soft;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    background: linear-gradient(135deg, $blue-medium, $blue-dark);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: $shadow-medium;
   }
 }
 
@@ -103,13 +108,13 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 }
 
 .modal {
-  background: $card-gradient;
+  background: linear-gradient(145deg, $white 0%, $background-paper 100%);
   padding: 2rem;
   border-radius: 20px;
   width: 100%;
   max-width: 600px;
   position: relative;
-  box-shadow: $shadow-hover;
+  box-shadow: $shadow-strong;
   text-align: center;
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
@@ -120,7 +125,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   position: absolute;
   top: 1rem;
   right: 1.5rem;
-  background: linear-gradient(135deg, $primary-medium, $primary-dark);
+  background: linear-gradient(135deg, $blue-medium, $blue-dark);
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
@@ -144,7 +149,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .modal h3 {
   font-size: 1.6rem;
   margin-bottom: 1rem;
-  color: $primary-dark;
+  color: $text-primary;
   font-family: 'Dancing Script', cursive;
   font-weight: 600;
 }
@@ -214,7 +219,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 }
 
 .navButton {
-  background: linear-gradient(135deg, $primary-medium, $primary-dark);
+  background: linear-gradient(135deg, $blue-medium, $blue-dark);
   border: none;
   font-size: 1.2rem;
   color: white;

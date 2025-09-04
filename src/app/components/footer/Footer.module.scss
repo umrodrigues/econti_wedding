@@ -1,16 +1,19 @@
-$primary-dark: #1c3b6c;
-$primary-medium: #486b92;
-$primary-light: #f8f8f8;
-$primary-gradient-start: #f0f6ff;
-$primary-gradient-mid: #e0e8ff;
-$accent-rose: #e91e63;
-$accent-pink: #f8bbd9;
-$text-dark: #2c1810;
-$text-light: #6d4c41;
-$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
+$blue-light: #B8D4E3;
+$blue-medium: #7BA7BC;
+$blue-dark: #4A7C95;
+$blue-deep: #2C5F7A;
+$background-textured: #FAFAFA;
+$background-paper: #F5F5F5;
+$text-primary: #1A3A4A;
+$text-secondary: #4A5C6B;
+$text-light: #6B7B8C;
+$white: #FFFFFF;
+$shadow-soft: 0 4px 20px rgba(44, 95, 122, 0.08);
+$shadow-medium: 0 8px 30px rgba(44, 95, 122, 0.12);
+$shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
 
 .footer {
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  background: linear-gradient(135deg, $blue-deep, $blue-dark);
   color: white;
   text-align: center;
   padding: 1.5rem 0;

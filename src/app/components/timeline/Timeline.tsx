@@ -72,13 +72,13 @@ export default function Timeline() {
               >
                 <div className={styles.timelineContent}>
                   <div className={styles.imageContainer}>
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={200}
-                      height={150}
-                      className={styles.timelineImage}
-                    />
+                            <Image
+          src={item.image}
+          alt={item.title}
+          width={280}
+          height={180}
+          className={styles.timelineImage}
+        />
                     <div className={styles.imageOverlay}>
                       <span className={styles.date}>{item.date}</span>
                     </div>

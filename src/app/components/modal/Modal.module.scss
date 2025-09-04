@@ -1,15 +1,16 @@
-$primary-dark: #1c3b6c;
-$primary-medium: #486b92;
-$primary-light: #f8f8f8;
-$primary-gradient-start: #f0f6ff;
-$primary-gradient-mid: #e0e8ff;
-$accent-rose: #e91e63;
-$accent-pink: #f8bbd9;
-$text-dark: #2c1810;
-$text-light: #6d4c41;
-$card-gradient: linear-gradient(145deg, #ffffff 0%, #f8f8f8 100%);
-$shadow-soft: 0 8px 32px rgba(28, 59, 108, 0.1);
-$shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
+$blue-light: #B8D4E3;
+$blue-medium: #7BA7BC;
+$blue-dark: #4A7C95;
+$blue-deep: #2C5F7A;
+$background-textured: #FAFAFA;
+$background-paper: #F5F5F5;
+$text-primary: #1A3A4A;
+$text-secondary: #4A5C6B;
+$text-light: #6B7B8C;
+$white: #FFFFFF;
+$shadow-soft: 0 4px 20px rgba(44, 95, 122, 0.08);
+$shadow-medium: 0 8px 30px rgba(44, 95, 122, 0.12);
+$shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
 
 .modalOverlay {
   position: fixed;
@@ -24,12 +25,12 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 }
 
 .modal {
-  background: $card-gradient;
+  background: linear-gradient(145deg, $white 0%, $background-paper 100%);
   padding: 3rem;
   border-radius: 24px;
   width: 100%;
   max-width: 600px;
-  box-shadow: $shadow-hover;
+  box-shadow: $shadow-strong;
   position: relative;
   text-align: center;
   border: 1px solid rgba(28, 59, 108, 0.1);
@@ -45,7 +46,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, $primary-medium, $accent-rose, $primary-medium);
+    background: linear-gradient(90deg, $blue-medium, $blue-light, $blue-medium);
     background-size: 200% 100%;
     animation: shimmer 3s infinite;
   }
@@ -62,7 +63,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: linear-gradient(135deg, $primary-medium, $primary-dark);
+  background: linear-gradient(135deg, $blue-medium, $blue-dark);
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
@@ -92,7 +93,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: $shadow-hover;
+    box-shadow: $shadow-strong;
   }
 }
 
@@ -100,9 +101,9 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   font-weight: 600;
   margin-bottom: 1.5rem;
   font-size: 1.3rem;
-  color: $primary-dark;
+  color: $text-primary;
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  background: linear-gradient(135deg, $blue-dark, $blue-medium);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -128,13 +129,13 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   background: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
   font-size: 1rem;
-  color: $text-dark;
+  color: $text-primary;
   font-family: 'Inter', sans-serif;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(28, 59, 108, 0.05);
 
   &:focus {
-    border-color: $primary-medium;
+    border-color: $blue-medium;
     outline: none;
     box-shadow: 0 0 0 4px rgba(28, 59, 108, 0.1);
     background: white;
@@ -142,8 +143,8 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   }
 
   &::placeholder {
-    color: $text-light;
-    opacity: 0.7;
+    color: $text-secondary;
+    opacity: 0.8;
   }
 }
 
@@ -161,7 +162,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .payButton {
   margin-top: 2rem;
   width: 100%;
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  background: linear-gradient(135deg, $blue-dark, $blue-medium);
   color: white;
   border: none;
   padding: 1.2rem;
@@ -227,7 +228,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .qrSection p {
   margin-top: 1.5rem;
   font-weight: 500;
-  color: $primary-dark;
+  color: $text-primary;
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   position: relative;
@@ -247,10 +248,10 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .contributors h3 {
   margin-bottom: 1.5rem;
   font-size: 1.4rem;
-  color: $primary-dark;
+  color: $text-primary;
   font-family: 'Inter', sans-serif;
   text-align: center;
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  background: linear-gradient(135deg, $blue-dark, $blue-medium);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -258,9 +259,10 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 }
 
 .contributors p {
-  color: $text-light;
+  color: $text-secondary;
   text-align: center;
   font-style: italic;
+  font-weight: 500;
   font-size: 1rem;
 }
 
@@ -274,9 +276,9 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   margin-bottom: 0.75rem;
   padding: 1rem 1.5rem;
   border-radius: 12px;
-  color: $text-dark;
+  color: $text-primary;
   font-size: 1rem;
-  border-left: 4px solid $primary-medium;
+  border-left: 4px solid $blue-medium;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(28, 59, 108, 0.05);
 
@@ -288,12 +290,12 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 }
 
 .giftTitle {
-  color: $primary-dark;
+  color: $text-primary;
   margin-bottom: 1.5rem;
   font-family: 'Inter', sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(135deg, $primary-dark, $primary-medium);
+  background: linear-gradient(135deg, $blue-dark, $blue-medium);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -313,7 +315,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   display: block;
   margin-bottom: 1rem;
   font-weight: 600;
-  color: $primary-dark;
+  color: $text-primary;
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
 }
@@ -326,14 +328,14 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   font-size: 0.85rem;
   border: 2px solid rgba(28, 59, 108, 0.15);
   border-radius: 12px;
-  color: $text-dark;
+  color: $text-primary;
   background: rgba(255, 255, 255, 0.9);
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(28, 59, 108, 0.05);
   line-height: 1.4;
 
   &:focus {
-    border-color: $primary-medium;
+    border-color: $blue-medium;
     outline: none;
     box-shadow: 0 0 0 4px rgba(28, 59, 108, 0.1);
     background: white;
@@ -343,11 +345,12 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
 .valueHint {
   text-align: center;
-  color: $text-light;
+  color: $text-secondary;
   font-size: 0.85rem;
   margin-top: 0.5rem;
   font-style: italic;
-  opacity: 0.7;
+  opacity: 0.9;
+  font-weight: 500;
 }
 
 .copyButton {
@@ -355,7 +358,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  background: linear-gradient(135deg, $primary-medium, $primary-dark);
+  background: linear-gradient(135deg, $blue-medium, $blue-dark);
   color: white;
   border: none;
   padding: 1rem 2rem;
