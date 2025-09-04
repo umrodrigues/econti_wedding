@@ -117,6 +117,9 @@ export default function Content() {
           <h1 className={styles.title}>
             Lista de Presentes
           </h1>
+          <p className={styles.subtitleInfo}>
+            💡 Os valores são sugestões - contribua com o que desejar!
+          </p>
           {loading ? (
             <div className={styles.loadingContainer}>
               <div className={styles.loadingSpinner}>
@@ -166,6 +169,14 @@ export default function Content() {
         >
           Lista de Presentes
         </motion.h1>
+        <motion.p 
+          className={styles.subtitleInfo}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          💡 Os valores são sugestões - contribua com o que desejar!
+        </motion.p>
         <AnimatePresence mode="wait">
           {loading ? (
             <LoadingSpinner key="loading" />

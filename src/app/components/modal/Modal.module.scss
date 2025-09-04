@@ -341,6 +341,15 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
   }
 }
 
+.valueHint {
+  text-align: center;
+  color: $text-light;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  font-style: italic;
+  opacity: 0.7;
+}
+
 .copyButton {
   margin-top: 1rem;
   display: inline-flex;

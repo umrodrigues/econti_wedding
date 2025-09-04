@@ -106,7 +106,7 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 .title {
   text-align: center;
   color: $primary-medium;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   font-family: 'Dancing Script', cursive;
   font-size: 3.5rem;
   font-weight: 600;
@@ -118,6 +118,20 @@ $shadow-hover: 0 12px 40px rgba(28, 59, 108, 0.2);
 
   @media (max-width: 768px) {
     font-size: 2.5rem;
+  }
+}
+
+.subtitleInfo {
+  text-align: center;
+  color: $text-light;
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  font-style: italic;
+  opacity: 0.8;
+
+  @media (max-width: 768px) {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
   }
 }
 

@@ -258,6 +258,14 @@ export default function Modal({ gift, closeModal }: ModalProps) {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6, duration: 0.5 }}
                 />
+                <motion.p 
+                  className={styles.valueHint}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.7, duration: 0.5 }}
+                >
+                  💡 Contribua com qualquer valor que desejar
+                </motion.p>
                 <AnimatePresence>
                   {error && (
                     <motion.p 
