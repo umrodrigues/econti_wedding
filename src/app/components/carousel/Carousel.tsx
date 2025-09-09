@@ -59,7 +59,7 @@ const carouselData = [
   {
     id: 11,
     image: '/timeline/10.jpg',
-    year: '2024'
+    year: '2025'
   }
 ]
 
