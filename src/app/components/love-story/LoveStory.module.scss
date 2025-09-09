@@ -103,10 +103,14 @@ $shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
     font-size: 1.1rem;
     color: $text-secondary;
     line-height: 1.8;
-    margin: 0;
+    margin-bottom: 1.5rem;
     text-align: justify;
     position: relative;
     padding-left: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
 
     &::before {
       content: '💕';
@@ -117,9 +121,22 @@ $shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
       opacity: 0.6;
     }
 
+    &:nth-child(even) {
+      &::before {
+        content: '✨';
+      }
+    }
+
+    &:nth-child(3n) {
+      &::before {
+        content: '💖';
+      }
+    }
+
     @media (max-width: 768px) {
       font-size: 1rem;
       line-height: 1.7;
+      margin-bottom: 1.2rem;
       padding-left: 1.2rem;
 
       &::before {
