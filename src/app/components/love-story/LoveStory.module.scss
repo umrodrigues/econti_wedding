@@ -1,0 +1,165 @@
+$blue-light: #B8D4E3;
+$blue-medium: #7BA7BC;
+$blue-dark: #4A7C95;
+$blue-deep: #2C5F7A;
+$background-textured: #FAFAFA;
+$background-paper: #F5F5F5;
+$text-primary: #1A3A4A;
+$text-secondary: #4A5C6B;
+$text-light: #6B7B8C;
+$white: #FFFFFF;
+$shadow-soft: 0 4px 20px rgba(44, 95, 122, 0.08);
+$shadow-medium: 0 8px 30px rgba(44, 95, 122, 0.12);
+$shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
+
+.loveStorySection {
+  padding: 4rem 1rem;
+  background: linear-gradient(135deg, $white 0%, $background-textured 50%, $background-paper 100%);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="hearts" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 25c-4-5-8-10-12-15a10 10 0 0 1 0-12 10 10 0 0 1 12 0 10 10 0 0 1 12 0 10 10 0 0 1 0 12c-4 5-8 10-12 15z" fill="rgba(123,167,188,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23hearts)"/></svg>');
+    opacity: 0.4;
+  }
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: 3.2rem;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 3.5rem;
+  background: linear-gradient(135deg, $blue-deep, $blue-dark);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(28, 59, 108, 0.1);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, $blue-light, $blue-medium, $blue-light);
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 2.4rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+.storyContent {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 252, 255, 0.9));
+  border-radius: 25px;
+  padding: 3rem;
+  box-shadow: $shadow-medium;
+  border: 1px solid rgba(123, 167, 188, 0.1);
+  backdrop-filter: blur(10px);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(135deg, $blue-light, $blue-medium, $blue-light);
+    border-radius: 25px;
+    z-index: -1;
+    opacity: 0.3;
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1.5rem;
+    border-radius: 20px;
+  }
+}
+
+.storyText {
+  p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: $text-secondary;
+    line-height: 1.8;
+    margin: 0;
+    text-align: justify;
+    position: relative;
+    padding-left: 1.5rem;
+
+    &::before {
+      content: '💕';
+      position: absolute;
+      left: 0;
+      top: 0.2rem;
+      font-size: 1rem;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 1rem;
+      line-height: 1.7;
+      padding-left: 1.2rem;
+
+      &::before {
+        font-size: 0.9rem;
+        top: 0.1rem;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .loveStorySection {
+    padding: 3rem 1rem;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .loveStorySection {
+    padding: 2.5rem 0.5rem;
+  }
+
+  .storyContent {
+    padding: 1.5rem 1rem;
+  }
+
+  .storyText {
+    p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      padding-left: 1rem;
+
+      &::before {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

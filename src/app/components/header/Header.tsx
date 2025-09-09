@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Econti Wedding 💍</h2>
+        <h2 className={styles.title}>& Conti Wedding 💍</h2>
         <div className={styles.buttonGroup}>
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSfh3tQ3YFg6BTUrEIY0opCGBc2Qu-TYEAFYEaVYUHECYv2Dfw/viewform"

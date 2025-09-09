@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import GiftItem, { GiftItemProps } from '../gift-item/GiftItem'
 import Modal from '../modal/Modal'
-import Timeline from '../timeline/Timeline'
+import Carousel from '../carousel/Carousel'
+import LoveStory from '../love-story/LoveStory'
 import styles from './Content.module.scss'
 import Header from '../header/Header'
 import { FaRegLightbulb, FaHeart } from 'react-icons/fa'
@@ -111,7 +112,9 @@ export default function Content() {
         <p>Os valores exibidos são sugestões, contribua com o valor que desejar!</p>
       </motion.div>
       
-      <Timeline />
+      <Carousel />
+      
+      <LoveStory />
       
       <main className={styles.main}>
                 <motion.h1
