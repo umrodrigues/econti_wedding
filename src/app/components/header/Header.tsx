@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import Image from 'next/image'
 import styles from './Header.module.scss'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
@@ -16,9 +17,14 @@ const cabanaImages = [
 export default function Header() {
   const [showModal, setShowModal] = useState(false)
   const [currentImage, setCurrentImage] = useState(0)
+  const [mounted, setMounted] = useState(false)
 
   const handleOpenModal = () => setShowModal(true)
   const handleCloseModal = () => setShowModal(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const nextImage = () =>
     setCurrentImage((prev) => (prev + 1) % cabanaImages.length)
@@ -47,7 +53,7 @@ export default function Header() {
         </div>
       </div>
 
-      {showModal && (
+      {showModal && mounted && createPortal(
         <div className={styles.modalOverlay}>
           <div className={styles.modal}>
             <button className={styles.closeButton} onClick={handleCloseModal}>
@@ -91,10 +97,10 @@ export default function Header() {
             </p>
             <p>
               Entre em contato com o hotel informando que participará do
-              casamento Econti Wedding para obter condições especiais.
+              casamento & Conti Wedding para obter condições especiais.
             </p>
             <a
-              href="https://wa.me/555195755227?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20para%20o%20casamento%20Econti%20Wedding%20no%20dia%2014/06%20às%2016h."
+              href="https://wa.me/555195755227?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20para%20o%20casamento%20%26%20Conti%20Wedding%20no%20dia%2014/06%20às%2016h."
               target="_blank"
               rel="noopener noreferrer"
               className={styles.whatsappButton}
@@ -102,7 +108,8 @@ export default function Header() {
               Contatar hotel via WhatsApp
             </a>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   )

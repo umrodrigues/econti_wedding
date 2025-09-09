@@ -103,9 +103,8 @@ $shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
   align-items: flex-start;
   padding: 1rem;
   overflow-y: auto;
-  z-index: 1000;
+  z-index: 9999;
   backdrop-filter: blur(5px);
-  z-index: 1000;
 }
 
 .modal {
@@ -120,7 +119,7 @@ $shadow-strong: 0 12px 40px rgba(44, 95, 122, 0.15);
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
   border: 1px solid rgba(28, 59, 108, 0.1);
-  z-index: 1000;
+  z-index: 10000;
 }
 
 .closeButton {
