@@ -85,7 +85,7 @@ export default function SpecialInvitation() {
     if (showInvitation) {
       const timer = setTimeout(() => {
         handleCloseInvitation()
-      }, 7000)
+      }, 120000)
 
       return () => clearTimeout(timer)
     }
