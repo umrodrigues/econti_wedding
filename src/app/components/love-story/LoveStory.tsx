@@ -14,9 +14,6 @@ export default function LoveStory() {
     return (
       <section className={styles.loveStorySection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>
-            Nossa História Completa
-          </h2>
           
           <div className={styles.storyContent}>
             <div className={styles.storyText}>
@@ -80,14 +77,6 @@ export default function LoveStory() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <motion.h2 
-          className={styles.sectionTitle}
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-        >
-          Nossa História Completa
-        </motion.h2>
         
         <motion.div 
           className={styles.storyContent}
