@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@lottiefiles/dotlottie-react':
+        specifier: ^0.16.0
+        version: 0.16.0(react@19.1.0)
       framer-motion:
         specifier: ^12.23.12
         version: 12.23.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -297,6 +300,14 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
+
+  '@lottiefiles/dotlottie-react@0.16.0':
+    resolution: {integrity: sha512-ejFo/rCJ4FF8ssPduQeym41YFGAZyc7UHXe3TpADwY7eMYyuH6rlW0QWsx6ceEAKJQ49FBa4vm8m7b3mwhgnow==}
+    peerDependencies:
+      react: ^17 || ^18 || ^19
+
+  '@lottiefiles/dotlottie-web@0.51.0':
+    resolution: {integrity: sha512-CzrQk+nOr87jLPTTdFhQDBIDr7D8oH4CDDYym8mATI7IvMbvFMXt3XnJYLXCNOGYR2TlvHkPCpi4kupwqujXWQ==}
 
   '@next/env@15.3.1':
     resolution: {integrity: sha512-cwK27QdzrMblHSn9DZRV+DQscHXRuJv6MydlJRpFSqJWZrTYMLzKDeyueJNN9MGd8NNiUKzDQADAf+dMLXX7YQ==}
@@ -1651,6 +1662,13 @@ snapshots:
 
   '@img/sharp-win32-x64@0.34.1':
     optional: true
+
+  '@lottiefiles/dotlottie-react@0.16.0(react@19.1.0)':
+    dependencies:
+      '@lottiefiles/dotlottie-web': 0.51.0
+      react: 19.1.0
+
+  '@lottiefiles/dotlottie-web@0.51.0': {}
 
   '@next/env@15.3.1': {}
 
