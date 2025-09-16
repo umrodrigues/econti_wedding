@@ -117,14 +117,49 @@ export default function Content() {
       <LoveStory />
       
       <main className={styles.main}>
-                <motion.h1
-          className={`${styles.title} floral-decoration hexagon-frame`}
+        <motion.div
+          className={styles.titleContainer}
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          Lista de Presentes
-        </motion.h1>
+          <motion.div
+            className={styles.titleWrapper}
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.4, type: "spring", stiffness: 100 }}
+          >
+            <motion.div
+              className={styles.decorativeLeft}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
+              <span className={styles.heart}>💝</span>
+              <span className={styles.sparkle}>✨</span>
+            </motion.div>
+            
+            <motion.h1
+              className={styles.title}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <span className={styles.titleMain}>Lista de</span>
+              <span className={styles.titleSecondary}>Presentes</span>
+            </motion.h1>
+            
+            <motion.div
+              className={styles.decorativeRight}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 1.0 }}
+            >
+              <span className={styles.gift}>🎁</span>
+              <span className={styles.ribbon}>🎀</span>
+            </motion.div>
+          </motion.div>
+        </motion.div>
         <motion.p 
           className={styles.subtitleInfo}
           initial={{ opacity: 0, y: 20 }}
