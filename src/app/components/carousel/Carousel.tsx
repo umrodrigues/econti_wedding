@@ -9,52 +9,52 @@ const carouselData = [
   {
     id: 1,
     image: '/timeline/0.jpg',
-    year: '2014'
+    year: '2015'
   },
   {
     id: 2,
     image: '/timeline/1.jpg',
-    year: '2015'
+    year: '2016'
   },
   {
     id: 3,
     image: '/timeline/2.jpg',
-    year: '2016'
+    year: '2017'
   },
   {
     id: 4,
     image: '/timeline/3.jpg',
-    year: '2017'
+    year: '2018'
   },
   {
     id: 5,
     image: '/timeline/4.jpg',
-    year: '2018'
+    year: '2019'
   },
   {
     id: 6,
     image: '/timeline/5.jpg',
-    year: '2019'
+    year: '2020'
   },
   {
     id: 7,
     image: '/timeline/6.jpg',
-    year: '2020'
+    year: '2021'
   },
   {
     id: 8,
     image: '/timeline/7.jpg',
-    year: '2021'
+    year: '2022'
   },
   {
     id: 9,
     image: '/timeline/8.jpg',
-    year: '2022'
+    year: '2023'
   },
   {
     id: 10,
     image: '/timeline/9.jpg',
-    year: '2023'
+    year: '2024'
   },
   {
     id: 11,
@@ -104,7 +104,7 @@ export default function Carousel() {
       <section className={styles.carouselSection}>
         <div className={styles.container}>
           <h2 className={styles.sectionTitle}>
-            Nossa Jornada de Amor
+            Nossa História de Amor
           </h2>
           
           <div className={styles.carousel}>
@@ -153,7 +153,7 @@ export default function Carousel() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Nossa Jornada de Amor
+          Nossa História de Amor
         </motion.h2>
         
         <div className={styles.carousel}>

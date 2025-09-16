@@ -9,35 +9,35 @@ const timelineData = [
     id: 1,
     image: '/casal/casal1.jpg',
     title: 'Nosso Primeiro Encontro',
-    date: '2020',
+    date: '2021',
     description: 'O dia em que nossos caminhos se cruzaram pela primeira vez'
   },
   {
     id: 2,
     image: '/casal/casal2.jpg',
     title: 'Primeiro Beijo',
-    date: '2021',
+    date: '2022',
     description: 'Um momento mágico que mudou nossas vidas para sempre'
   },
   {
     id: 3,
     image: '/casal/casal3.jpg',
     title: 'Primeira Viagem Juntos',
-    date: '2022',
+    date: '2023',
     description: 'Descobrindo o mundo lado a lado'
   },
   {
     id: 4,
     image: '/casal/casal4.jpg',
     title: 'O Pedido',
-    date: '2023',
+    date: '2024',
     description: 'O momento mais especial de nossas vidas'
   },
   {
     id: 5,
     image: '/casal/casal7.jpg',
     title: 'Preparativos do Casamento',
-    date: '2024',
+    date: '2025',
     description: 'Construindo nosso futuro juntos'
   },
   {
