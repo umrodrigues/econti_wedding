@@ -85,7 +85,10 @@ export default function Content() {
       setLoading(true)
       const response = await fetch('/api/products')
       const data = await response.json()
-      setGifts(data.products)
+      
+      const sortedGifts = data.products.sort((a: any, b: any) => b.id - a.id)
+      
+      setGifts(sortedGifts)
       setLoading(false)
     }
     fetchGifts()
