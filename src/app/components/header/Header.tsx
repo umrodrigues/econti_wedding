@@ -92,7 +92,7 @@ export default function Header() {
             </div>
 
             <p>
-              O casamento acontecerá no dia <strong>14/06 às 16h</strong>. Para
+              O casamento acontecerá no dia <strong>14/03 às 16h</strong>. Para
               facilitar sua hospedagem, sugerimos reservar com o hotel parceiro.
             </p>
             <p>
@@ -100,7 +100,7 @@ export default function Header() {
               casamento & Conti Wedding para obter condições especiais.
             </p>
             <a
-              href="https://wa.me/555195755227?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20para%20o%20casamento%20%26%20Conti%20Wedding%20no%20dia%2014/06%20às%2016h."
+              href="https://wa.me/555195755227?text=Olá!%20Gostaria%20de%20fazer%20uma%20reserva%20para%20o%20casamento%20%26%20Conti%20Wedding%20no%20dia%2014/03%20às%2016h."
               target="_blank"
               rel="noopener noreferrer"
               className={styles.whatsappButton}
